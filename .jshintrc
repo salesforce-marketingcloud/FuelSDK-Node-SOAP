@@ -1,0 +1,26 @@
+{
+  "devel": true,
+  "browser": true,
+  "node": true,
+  "boss": true,
+  "bitwise": true,
+  "curly": true,
+  "debug": false,
+  "eqeqeq": true,
+  "latedef": false,
+  "laxbreak": true,
+  "laxcomma": true,
+  "newcap": true,
+  "undef": true,
+  "shadow": false,
+  "strict": true,
+  "unused": true,
+  "globals": {
+    "require": true,
+    "requirejs": true,
+    "define": true,
+    "describe": true,
+    "it": true,
+    "expect": true
+  }
+}
