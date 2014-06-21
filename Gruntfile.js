@@ -1,28 +1,20 @@
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
+  'use strict';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
-
     jshint: {
-      all: ['Gruntfile.js', 'lib/**/*.js', 'test/app/js']
-    },
-
-    mochaTest: {
-      test: {
-        options: {
-          reporter: 'spec'
-        },
-        src: ['test/spec/*.js']
+      options: {
+        jshintrc: '.jshintrc'
       }
+      , all: [
+        'Gruntfile.js'
+        , 'lib/**/*.js'
+        , 'test/app/js'
+      ]
     }
-
-
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-mocha-test');
-
-  grunt.registerTask('default', ['jshint', 'mochaTest']);
-
+  grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+  grunt.registerTask( 'default', [ 'jshint' ] );
 };

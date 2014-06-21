@@ -1,27 +1,26 @@
 {
-  "name": "node-fuelAuth",
+  "name": "fuel-node-rest",
   "version": "0.0.1",
-  "description": "node-fuelAuth",
-  "main": "./lib/fuel-node-soap.js",
+  "description": "Node Library for performing REST API calls with ExactTarget Fuel.",
+  "main": "./lib/fuel-node-rest.js",
   "scripts": {
-    "test": "mocha test/spec"
+    "test": "grunt jshint && mocha --reporter=spec test/spec"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.exacttarget.com:kandrews/node-fuelAuth.git"
+    "url": "git@github.com:ExactTarget/Fuel-Node-REST.git"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "express": "^4.4.3",
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-mocha-test": "^0.11.0",
-    "mocha": "^1.20.1",
-    "should": "^4.0.4"
+    "express": "~4.4.3",
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "mocha": "~1.20.1",
+    "should": "~4.0.4"
   },
   "dependencies": {
-    "request": "^2.36.0",
-    "lodash": "^2.4.1"
+    "request": "~2.36.0",
+    "lodash": "~2.4.1"
   }
 }
