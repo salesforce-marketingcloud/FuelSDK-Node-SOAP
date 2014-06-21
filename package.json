@@ -1,14 +1,14 @@
 {
-  "name": "fuel-node-rest",
+  "name": "fuel-node-soap",
   "version": "0.0.1",
-  "description": "Node Library for performing REST API calls with ExactTarget Fuel.",
-  "main": "./lib/fuel-node-rest.js",
+  "description": "Node Library for performing SOAP API calls with ExactTarget Fuel.",
+  "main": "./lib/fuel-node-soap.js",
   "scripts": {
     "test": "grunt jshint && mocha --reporter=spec test/spec"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ExactTarget/Fuel-Node-REST.git"
+    "url": "git@github.com:ExactTarget/Fuel-Node-SOAP.git"
   },
   "author": "",
   "license": "MIT",
