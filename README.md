@@ -1,2 +1,4 @@
-Node-Fuel-SOAP
+Fuel REST Client (for Node.js)
 =============
+
+Coming soon...
