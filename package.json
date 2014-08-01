@@ -1,26 +1,30 @@
 {
-  "name": "fuel-node-soap",
-  "version": "0.0.1",
-  "description": "Node Library for performing SOAP API calls with ExactTarget Fuel.",
-  "main": "./lib/fuel-node-soap.js",
-  "scripts": {
-    "test": "grunt jshint && mocha --reporter=spec test/spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ExactTarget/Fuel-Node-SOAP.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "express": "~4.4.3",
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0",
-    "mocha": "~1.20.1",
-    "should": "~4.0.4"
-  },
-  "dependencies": {
-    "request": "~2.36.0",
-    "lodash": "~2.4.1"
-  }
+	"name": "fuel-soap",
+	"version": "0.0.1",
+	"description": "Node Library for performing SOAP API calls with ExactTarget Fuel.",
+	"main": "./lib/fuel-soap.js",
+	"scripts": {
+		"test": "grunt jshint && ./node_modules/mocha/bin/mocha --reporter=spec test/specs/*.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:ExactTarget/Fuel-Node-SOAP.git"
+	},
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"body-parser": "~1.4.3",
+		"chai": "~1.9.1",
+		"grunt": "~0.4.5",
+		"grunt-bump": "~0.0.14",
+		"grunt-contrib-jshint": "~0.10.0",
+		"mocha": "~1.20.1",
+		"sinon": "~1.10.2"
+	},
+	"dependencies": {
+		"xml2js": "^0.4.4",
+		"fuel-auth": "git+ssh://git@github.com:ExactTarget/Fuel-Node-Auth.git",
+		"lodash": "~2.4.1",
+		"request": "~2.36.0"
+	}
 }
