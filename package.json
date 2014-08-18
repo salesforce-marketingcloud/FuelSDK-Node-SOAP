@@ -22,8 +22,8 @@
 		"sinon": "~1.10.2"
 	},
 	"dependencies": {
-		"xml2js": "^0.4.4",
-		"fuel-auth": "git+ssh://git@github.com:ExactTarget/Fuel-Node-Auth.git",
+		"xml2js": "~0.4.4",
+		"fuel-auth": "git://github.com/ExactTarget/Fuel-Node-Auth.git",
 		"lodash": "~2.4.1",
 		"request": "~2.36.0"
 	}
