@@ -1,72 +1,122 @@
 var expect   = require( 'chai' ).expect;
-var FuelRest = require( '../../lib/fuel-rest' );
+var FuelSoap = require( '../../lib/fuel-soap' );
 var FuelAuth = require( 'fuel-auth' );
 
 describe( 'General Tests', function() {
 	'use strict';
 
 	it( 'should be a constructor', function() {
-		expect( FuelRest ).to.be.a( 'function' );
+		expect( FuelSoap ).to.be.a( 'function' );
 	});
 
 	it( 'should require auth options', function() {
-		var RestClient = new FuelRest();
+		var SoapClient;
 
-		// if no options are passed, there will be no auth client
-		expect( RestClient.AuthClient ).to.be.undefined;
+		try {
+            SoapClient = new FuelSoap();
+        } catch ( err ) {
+            expect( err.message).to.equal( 'options are required. see readme.' );
+        }
 
-		RestClient = new FuelRest({
+        SoapClient = new FuelSoap({
 			clientId: 'testing'
 			, clientSecret: 'testing'
 		});
 
 		// rest client should have an instance of an auth client
-		expect( RestClient.AuthClient instanceof FuelAuth ).to.be.true;
+		expect( SoapClient.AuthClient instanceof FuelAuth ).to.be.true;
 	});
 
-	it( 'should take a custom rest endpoint', function() {
+    it( 'should use already initiated fuel auth client', function() {
+        var AuthClient, SoapClient;
+
+        AuthClient = new FuelAuth({
+            clientId: 'testing'
+            , clientSecret: 'testing'
+        });
+
+        AuthClient.test = true;
+
+        SoapClient = new FuelSoap( AuthClient );
+
+        expect( SoapClient.AuthClient.test).to.be.true;
+    });
+
+	it( 'should take a custom soap endpoint', function() {
 		// testing default initialization
-		var RestClient = new FuelRest({
+		var SoapClient = new FuelSoap({
 			clientId: 'testing'
 			, clientSecret: 'testing'
 		});
 
-		expect( RestClient.requestOptions.uri ).to.equal( 'https://www.exacttargetapis.com' );
+		expect( SoapClient.requestOptions.uri ).to.equal( 'https://webservice.exacttarget.com/Service.asmx' );
 
 		// testing custom endpoint
-		RestClient = new FuelRest({
+		SoapClient = new FuelSoap({
 			clientId: 'testing'
 			, clientSecret: 'testing'
 		}, 'https://www.exacttarget.com' );
 
-		expect( RestClient.requestOptions.uri ).to.equal( 'https://www.exacttarget.com' );
+		expect( SoapClient.requestOptions.uri ).to.equal( 'https://www.exacttarget.com' );
 	});
 
-	it( 'should have event emitter prototype', function() {
-		expect( FuelRest.super_.name ).to.equal( 'EventEmitter' );
+	it( 'should have makeRequest on prototype', function() {
+		expect( FuelSoap.prototype.makeRequest ).to.be.a( 'function' );
 	});
 
-	it( 'should have apiRequest on prototype', function() {
-		expect( FuelRest.prototype.apiRequest ).to.be.a( 'function' );
+	it( 'should have create on prototype', function() {
+		expect( FuelSoap.prototype.create ).to.be.a( 'function' );
 	});
 
-	it( 'should have get on prototype', function() {
-		expect( FuelRest.prototype.get ).to.be.a( 'function' );
+	it( 'should have retrieve on prototype', function() {
+		expect( FuelSoap.prototype.retrieve ).to.be.a( 'function' );
 	});
 
-	it( 'should have post on prototype', function() {
-		expect( FuelRest.prototype.post ).to.be.a( 'function' );
-	});
-
-	it( 'should have put on prototype', function() {
-		expect( FuelRest.prototype.put ).to.be.a( 'function' );
+	it( 'should have update on prototype', function() {
+		expect( FuelSoap.prototype.update ).to.be.a( 'function' );
 	});
 
 	it( 'should have delete on prototype', function() {
-		expect( FuelRest.prototype.delete ).to.be.a( 'function' );
+		expect( FuelSoap.prototype.delete ).to.be.a( 'function' );
 	});
 
-	it( 'should have _deliverResponse on prototype', function() {
-		expect( FuelRest.prototype._deliverResponse ).to.be.a( 'function' );
+    it( 'should have describe on prototype', function() {
+        expect( FuelSoap.prototype.describe ).to.be.a( 'function' );
+    });
+
+    it( 'should have execute on prototype', function() {
+        expect( FuelSoap.prototype.execute ).to.be.a( 'function' );
+    });
+
+    it( 'should have perform on prototype', function() {
+        expect( FuelSoap.prototype.perform ).to.be.a( 'function' );
+    });
+
+    it( 'should have configure on prototype', function() {
+        expect( FuelSoap.prototype.configure ).to.be.a( 'function' );
+    });
+
+    it( 'should have schedule on prototype', function() {
+        expect( FuelSoap.prototype.schedule ).to.be.a( 'function' );
+    });
+
+    it( 'should have versionInfo on prototype', function() {
+        expect( FuelSoap.prototype.versionInfo ).to.be.a( 'function' );
+    });
+
+    it( 'should have extract on prototype', function() {
+        expect( FuelSoap.prototype.extract ).to.be.a( 'function' );
+    });
+
+    it( 'should have getSystemStatus on prototype', function() {
+        expect( FuelSoap.prototype.getSystemStatus ).to.be.a( 'function' );
+    });
+
+    it( 'should have buildEnvelope on prototype', function() {
+        expect( FuelSoap.prototype.buildEnvelope ).to.be.a( 'function' );
+    });
+
+	it( 'should have handleRequest on prototype', function() {
+		expect( FuelSoap.prototype.handleRequest ).to.be.a( 'function' );
 	});
 });
