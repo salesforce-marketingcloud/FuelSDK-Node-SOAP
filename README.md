@@ -3,22 +3,20 @@ Fuel SOAP Client (for Node.js)
 
 This library allows users access to ExactTarget's SOAP API at a low level.
 
-## API
+## Initialization
 
-**new FuelSoap( authOptions, soapEndpoint )** - Initialization
+**new FuelSoap( options )** - Initialization
 
-* *authOptions*
-    * required: yes
-    * type: `Object`
-    * properties need to match [FuelAuth Initialization][1]
-* *soapEndpoint*
-    * required: no
-    * type: `String`
-    * default: https://webservice.exacttarget.com/Service.asmx
+* *options.auth*
+    * Required: yes
+    * Type: `Object` or [FuelAuth Instance][1]
+    * properties need to match [FuelAuth][1]
+* *options.soapEndpoint*
+    * Required: no
+    * Type: `String`
+    * Default: https://webservice.exacttarget.com/Service.asmx
     
-### SOAP Methods
-
-#### Methods
+## API
 
 * **create( type, props, options, callback )**
 * **retrieve( type, props, filter, callback )**
@@ -38,12 +36,15 @@ This library allows users access to ExactTarget's SOAP API at a low level.
 
 ```js
 var FuelSoap = require( 'fuel-soap' );
-var alternateEndpoint;
+var options = {
+    auth: {
+        clientId: 'clientId'
+        , clientSecret: 'clientSecret'
+    }
+    , soapEndpoint: 'https://webservice.s6.exacttarget.com/Service.asmx' // default --> https://webservice.exacttarget.com/Service.asmx
+};
 
-var SoapClient = new FuelSoap({
-    clientId: 'clientId'
-    , clientSecret: 'clientSecret'
-}, alternateEndpoint );
+var SoapClient = new FuelSoap( options );
 ```
 
 
@@ -59,4 +60,4 @@ SoapClient.retrieve(
 );
 ```
 
-[1]: https://github.com/ExactTarget/Fuel-Node-Auth#api
+[1]: https://github.com/ExactTarget/Fuel-Node-Auth#initialization
