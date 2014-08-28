@@ -54,8 +54,13 @@ var SoapClient = new FuelSoap( options );
 SoapClient.retrieve( 
     'Email', 
     ["ID", "Name", "Subject", "CategoryID", "EmailType"], 
-    function( response ) {
-        console.log( response );
+    function( err, res ) {
+        if ( err ) {
+            // error here
+            console.log( err );
+        }
+        
+        console.log( res );
     }
 );
 ```

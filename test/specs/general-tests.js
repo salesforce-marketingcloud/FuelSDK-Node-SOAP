@@ -11,17 +11,20 @@ describe( 'General Tests', function() {
 
 	it( 'should require auth options', function() {
 		var SoapClient;
+        var options = {
+            auth: {
+                clientId: 'testing'
+                , clientSecret: 'testing'
+            }
+        };
 
 		try {
             SoapClient = new FuelSoap();
         } catch ( err ) {
-            expect( err.message).to.equal( 'options are required. see readme.' );
+            expect( err.message ).to.equal( 'clientId or clientSecret is missing or invalid' );
         }
 
-        SoapClient = new FuelSoap({
-			clientId: 'testing'
-			, clientSecret: 'testing'
-		});
+        SoapClient = new FuelSoap( options );
 
 		// rest client should have an instance of an auth client
 		expect( SoapClient.AuthClient instanceof FuelAuth ).to.be.true;
@@ -29,39 +32,43 @@ describe( 'General Tests', function() {
 
     it( 'should use already initiated fuel auth client', function() {
         var AuthClient, SoapClient;
-
-        AuthClient = new FuelAuth({
+        var authOptions = {
             clientId: 'testing'
             , clientSecret: 'testing'
-        });
+        };
+
+        AuthClient = new FuelAuth( authOptions );
 
         AuthClient.test = true;
 
-        SoapClient = new FuelSoap( AuthClient );
+        SoapClient = new FuelSoap({ auth: AuthClient });
 
         expect( SoapClient.AuthClient.test).to.be.true;
     });
 
 	it( 'should take a custom soap endpoint', function() {
+        var options = {
+            auth: {
+                clientId: 'testing'
+                , clientSecret: 'testing'
+            }
+        };
+
 		// testing default initialization
-		var SoapClient = new FuelSoap({
-			clientId: 'testing'
-			, clientSecret: 'testing'
-		});
+		var SoapClient = new FuelSoap( options );
 
 		expect( SoapClient.requestOptions.uri ).to.equal( 'https://webservice.exacttarget.com/Service.asmx' );
 
+        options.origin = 'https://www.exacttarget.com';
+
 		// testing custom endpoint
-		SoapClient = new FuelSoap({
-			clientId: 'testing'
-			, clientSecret: 'testing'
-		}, 'https://www.exacttarget.com' );
+		SoapClient = new FuelSoap( options );
 
 		expect( SoapClient.requestOptions.uri ).to.equal( 'https://www.exacttarget.com' );
 	});
 
-	it( 'should have makeRequest on prototype', function() {
-		expect( FuelSoap.prototype.makeRequest ).to.be.a( 'function' );
+	it( 'should have soapRequest on prototype', function() {
+		expect( FuelSoap.prototype.soapRequest() ).to.be.a( 'function' );
 	});
 
 	it( 'should have create on prototype', function() {
@@ -112,11 +119,15 @@ describe( 'General Tests', function() {
         expect( FuelSoap.prototype.getSystemStatus ).to.be.a( 'function' );
     });
 
-    it( 'should have buildEnvelope on prototype', function() {
-        expect( FuelSoap.prototype.buildEnvelope ).to.be.a( 'function' );
+    it( 'should have _buildEnvelope on prototype', function() {
+        expect( FuelSoap.prototype._buildEnvelope ).to.be.a( 'function' );
     });
 
-	it( 'should have handleRequest on prototype', function() {
-		expect( FuelSoap.prototype.handleRequest ).to.be.a( 'function' );
+	it( 'should have _parseResponse on prototype', function() {
+		expect( FuelSoap.prototype._parseResponse ).to.be.a( 'function' );
 	});
+
+    it( 'should have _deliverResponse on prototype', function() {
+        expect( FuelRest.prototype._deliverResponse ).to.be.a( 'function' );
+    });
 });
