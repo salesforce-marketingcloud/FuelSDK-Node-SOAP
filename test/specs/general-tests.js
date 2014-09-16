@@ -126,8 +126,4 @@ describe( 'General Tests', function() {
 	it( 'should have _parseResponse on prototype', function() {
 		expect( FuelSoap.prototype._parseResponse ).to.be.a( 'function' );
 	});
-
-    it( 'should have _deliverResponse on prototype', function() {
-        expect( FuelRest.prototype._deliverResponse ).to.be.a( 'function' );
-    });
 });
