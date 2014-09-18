@@ -10,8 +10,11 @@
     "type": "git",
     "url": "git@github.com:ExactTarget/Fuel-Node-SOAP.git"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "Aydrian J. Howard <ahoward@exacttarget.com>",
+  "contributors": [
+    "Kelly Andrews <kandrews@exacttarget.com>"
+  ],
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "body-parser": "~1.4.3",
     "chai": "~1.9.1",
