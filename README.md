@@ -22,13 +22,13 @@ This library allows users access to ExactTarget's SOAP API at a low level.
     * `type` - object type **required**
     * `callback` - executed after task is completed. **required**
 * **retrieve( type, props, filter, callback )**
-    * `type` - object type **required**
+    * `type` - object type. **required**
     * `props` - object properties to be returned **required**
     * `filter` - filter object
     * `callback` - executed after task is completed. **required**
 * **create | update | delete( type, props, options, callback )**
     * `type` - object type **required**
-    * `props` - object properties and values **required**
+    * `props` - object properties and values. **required**
     * `options` - options object
     * `callback` - executed after task is completed. **required**
 
