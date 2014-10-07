@@ -23,20 +23,20 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+'use strict';
 
 var expect   = require( 'chai' ).expect;
 var FuelSoap = require( '../../lib/fuel-soap' );
 var FuelAuth = require( 'fuel-auth' );
 
 describe( 'General Tests', function() {
-	'use strict';
 
-	it( 'should be a constructor', function() {
-		expect( FuelSoap ).to.be.a( 'function' );
-	});
+    it( 'should be a constructor', function() {
+        expect( FuelSoap ).to.be.a( 'function' );
+    });
 
-	it( 'should require auth options', function() {
-		var SoapClient;
+    it( 'should require auth options', function() {
+        var SoapClient;
         var options = {
             auth: {
                 clientId: 'testing'
@@ -44,17 +44,21 @@ describe( 'General Tests', function() {
             }
         };
 
-		try {
+        try {
             SoapClient = new FuelSoap();
         } catch ( err ) {
-            expect( err.message ).to.equal( 'clientId or clientSecret is missing or invalid' );
+            expect( err.message).to.equal( 'clientId or clientSecret is missing or invalid' );
         }
 
-        SoapClient = new FuelSoap( options );
+        try {
+            SoapClient = new FuelSoap( options );
+        } catch ( err ) {
+            expect( true ).to.be.false;
+        }
 
-		// rest client should have an instance of an auth client
-		expect( SoapClient.AuthClient instanceof FuelAuth ).to.be.true;
-	});
+        // soap client should have an instance of an auth client
+        expect( SoapClient.AuthClient instanceof FuelAuth).to.be.true;
+    });
 
     it( 'should use already initiated fuel auth client', function() {
         var AuthClient, SoapClient;
@@ -62,17 +66,21 @@ describe( 'General Tests', function() {
             clientId: 'testing'
             , clientSecret: 'testing'
         };
+        try {
+            AuthClient = new FuelAuth( authOptions );
 
-        AuthClient = new FuelAuth( authOptions );
+            AuthClient.test = true;
 
-        AuthClient.test = true;
+            SoapClient = new FuelSoap({ auth: AuthClient });
 
-        SoapClient = new FuelSoap({ auth: AuthClient });
+        } catch ( err ) {
+            expect( true ).to.be.false;
+        }
 
         expect( SoapClient.AuthClient.test).to.be.true;
     });
 
-	it( 'should take a custom soap endpoint', function() {
+    it( 'should take a custom soap endpoint', function() {
         var options = {
             auth: {
                 clientId: 'testing'
@@ -80,38 +88,38 @@ describe( 'General Tests', function() {
             }
         };
 
-		// testing default initialization
-		var SoapClient = new FuelSoap( options );
+        // testing default initialization
+        var SoapClient = new FuelSoap( options );
 
-		expect( SoapClient.requestOptions.uri ).to.equal( 'https://webservice.exacttarget.com/Service.asmx' );
+        expect( SoapClient.requestOptions.uri ).to.equal( 'https://webservice.exacttarget.com/Service.asmx' );
 
-        options.origin = 'https://www.exacttarget.com';
+        options.soapEndpoint = 'https://www.exacttarget.com';
 
-		// testing custom endpoint
-		SoapClient = new FuelSoap( options );
+        // testing custom endpoint
+        SoapClient = new FuelSoap( options );
 
-		expect( SoapClient.requestOptions.uri ).to.equal( 'https://www.exacttarget.com' );
-	});
+        expect( SoapClient.requestOptions.uri ).to.equal( 'https://www.exacttarget.com' );
+    });
 
-	it( 'should have soapRequest on prototype', function() {
-		expect( FuelSoap.prototype.soapRequest() ).to.be.a( 'function' );
-	});
+    it( 'should have soapRequest on prototype', function() {
+        expect( FuelSoap.prototype.soapRequest ).to.be.a( 'function' );
+    });
 
-	it( 'should have create on prototype', function() {
-		expect( FuelSoap.prototype.create ).to.be.a( 'function' );
-	});
+    it( 'should have create on prototype', function() {
+        expect( FuelSoap.prototype.create ).to.be.a( 'function' );
+    });
 
-	it( 'should have retrieve on prototype', function() {
-		expect( FuelSoap.prototype.retrieve ).to.be.a( 'function' );
-	});
+    it( 'should have retrieve on prototype', function() {
+        expect( FuelSoap.prototype.retrieve ).to.be.a( 'function' );
+    });
 
-	it( 'should have update on prototype', function() {
-		expect( FuelSoap.prototype.update ).to.be.a( 'function' );
-	});
+    it( 'should have update on prototype', function() {
+        expect( FuelSoap.prototype.update ).to.be.a( 'function' );
+    });
 
-	it( 'should have delete on prototype', function() {
-		expect( FuelSoap.prototype.delete ).to.be.a( 'function' );
-	});
+    it( 'should have delete on prototype', function() {
+        expect( FuelSoap.prototype.delete ).to.be.a( 'function' );
+    });
 
     it( 'should have describe on prototype', function() {
         expect( FuelSoap.prototype.describe ).to.be.a( 'function' );
@@ -149,7 +157,7 @@ describe( 'General Tests', function() {
         expect( FuelSoap.prototype._buildEnvelope ).to.be.a( 'function' );
     });
 
-	it( 'should have _parseResponse on prototype', function() {
-		expect( FuelSoap.prototype._parseResponse ).to.be.a( 'function' );
-	});
+    it( 'should have _parseResponse on prototype', function() {
+        expect( FuelSoap.prototype._parseResponse ).to.be.a( 'function' );
+    });
 });
