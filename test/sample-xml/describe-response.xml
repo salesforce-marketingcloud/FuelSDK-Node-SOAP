@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+               xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+               xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <soap:Header>
+        <wsa:Action>DescribeResponse</wsa:Action>
+        <wsa:MessageID>urn:uuid:1c2f51f6-946f-48c4-a4c6-60d9057d3df6</wsa:MessageID>
+        <wsa:RelatesTo>urn:uuid:5493c4a3-4461-4e48-bf35-4d3180686d2b</wsa:RelatesTo>
+        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+        <wsse:Security>
+            <wsu:Timestamp wsu:Id="Timestamp-ef36fdaf-14c1-4cc8-a641-4e35a7b1bed6">
+                <wsu:Created>2014-10-07T14:48:45Z</wsu:Created>
+                <wsu:Expires>2014-10-07T14:53:45Z</wsu:Expires>
+            </wsu:Timestamp>
+        </wsse:Security>
+    </soap:Header>
+    <soap:Body>
+        <DefinitionResponseMsg xmlns="http://exacttarget.com/wsdl/partnerAPI">
+            <ObjectDefinition>
+                <ObjectType>Email</ObjectType>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>ID</Name>
+                    <DataType>Int32</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>PartnerKey</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>64</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>CreatedDate</Name>
+                    <DataType>DateTime</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>ModifiedDate</Name>
+                    <DataType>DateTime</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Client.ID</Name>
+                    <DataType>Int32</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Name</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>100</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>PreHeader</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>2147483647</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Folder</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>100</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>CategoryID</Name>
+                    <DataType>Int32</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>HTMLBody</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>1073741823</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>TextBody</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>1073741823</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Subject</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>200</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>IsActive</Name>
+                    <DataType>Boolean</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>IsHTMLPaste</Name>
+                    <DataType>Boolean</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>ClonedFromID</Name>
+                    <DataType>Int32</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Status</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>50</MaxLength>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>EmailType</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>20</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>CharacterSet</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>20</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>HasDynamicSubjectLine</Name>
+                    <DataType>Boolean</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>ContentCheckStatus</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>17</MaxLength>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Client.PartnerClientKey</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>64</MaxLength>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>ContentAreas</Name>
+                    <DataType>ContentArea[]</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <IsRequired>false</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>CustomerKey</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>true</IsRetrievable>
+                    <MaxLength>36</MaxLength>
+                    <IsRequired>true</IsRequired>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Template</Name>
+                    <DataType>Template</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>CustomObjectID</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>SampleAudienceOnly</Name>
+                    <DataType>Boolean</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>SyncTextWithHTML</Name>
+                    <DataType>Boolean</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>IsApproved</Name>
+                    <DataType>Boolean</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Client</Name>
+                    <DataType>ClientID</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>PartnerProperties</Name>
+                    <DataType>APIProperty[]</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>ObjectID</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>Owner</Name>
+                    <DataType>Owner</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>CorrelationID</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>ObjectState</Name>
+                    <DataType>String</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+                <Properties>
+                    <PartnerKey xsi:nil="true"/>
+                    <ObjectID xsi:nil="true"/>
+                    <Name>IsPlatformObject</Name>
+                    <DataType>Boolean</DataType>
+                    <IsUpdatable>true</IsUpdatable>
+                    <IsRetrievable>false</IsRetrievable>
+                </Properties>
+            </ObjectDefinition>
+            <RequestID>7c32fad6-c9e2-4ef3-8122-00c820c04b84</RequestID>
+        </DefinitionResponseMsg>
+    </soap:Body>
+</soap:Envelope>

@@ -28,12 +28,7 @@ var http = require('http');
 var bodyParser = require('body-parser');
 
 var validUrls = {
-	get: '/get/test'
-	, post: '/post/test'
-	, put: '/update/test'
-	, delete: '/delete/test'
-	, queryGet: '/get/test?test=1'
-	, notJson: '/not/json/response'
+    base: '/sample/soap/endpoint'
 };
 var sampleResponses = require('./sample-responses');
 
@@ -45,7 +40,7 @@ module.exports = function(port) {
 		var _bodyParser   = bodyParser.json();
 		var validUrlCheck = false;
 
-		res.setHeader('Content-Type', 'application/json');
+		res.setHeader('Content-Type', 'text/xml');
 
 		// check for valid URL (404)
 		for( var key in validUrls ) {
@@ -58,50 +53,56 @@ module.exports = function(port) {
 
 		if( !validUrlCheck ) {
 			res.statusCode = 404;
-			res.end(JSON.stringify(sampleResponses['404']));
+			res.end();
 			return;
 		}
 
 		_bodyParser(req, res, function(err) {
+            var soapAction = req.headers.soapaction;
 
 			if (err) {
 				throw new Error('problem with bodyParser');
 			}
 
-			if( req.url === validUrls.get && req.method === 'GET' ) {
+            if (req.method !== 'POST') {
+                res.statusCode = 500;
+                res.end();
+                return;
+            }
+
+			if( soapAction.toLowerCase() === 'describe' ) {
 				res.statusCode = 200;
-				res.end( JSON.stringify( sampleResponses.get200 ) );
+				res.end(sampleResponses.describe);
 				return;
 			}
 
-			if( req.url === validUrls.post && req.body.testingData === 'test data' && req.method === 'POST' ) {
-				res.statusCode = 200;
-				res.end( JSON.stringify( sampleResponses.post200 ) );
-				return;
-			}
+            if( soapAction.toLowerCase() === 'retrieve' ) {
+                res.statusCode = 200;
+                res.end(sampleResponses.retrieve);
+                return;
+            }
 
-			if( req.url === validUrls.put && req.body.testingData === 'test data' && req.method === 'PUT' ) {
-				res.statusCode = 200;
-				res.end( JSON.stringify( sampleResponses.post200 ) );
-				return;
-			}
+            if( soapAction.toLowerCase() === 'create' ) {
+                res.statusCode = 200;
+                res.end(sampleResponses.create);
+                return;
+            }
 
-			if( req.url === validUrls.delete && req.body.testingData === 'test data' && req.method === 'DELETE' ) {
-				res.statusCode = 200;
-				res.end( JSON.stringify( sampleResponses.post200 ) );
-				return;
-			}
+            if( soapAction.toLowerCase() === 'update' ) {
+                res.statusCode = 200;
+                res.end(sampleResponses.update);
+                return;
+            }
 
-			if( req.url === validUrls.notJson ) {
-				res.setHeader( 'Content-Type', 'text/html' );
-				res.statusCode = 200;
-				res.end( JSON.stringify( sampleResponses.get200 ) );
-				return;
-			}
+            if( soapAction.toLowerCase() === 'delete' ) {
+                res.statusCode = 200;
+                res.end(sampleResponses.delete);
+                return;
+            }
 
 			// coverall
 			res.statusCode = 500;
-			res.end(JSON.stringify(sampleResponses['500']));
+			res.end();
 			return;
 		});
 	}).listen(port);

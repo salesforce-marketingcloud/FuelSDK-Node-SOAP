@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+               xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+               xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <soap:Header>
+        <wsa:Action>UpdateResponse</wsa:Action>
+        <wsa:MessageID>urn:uuid:d2370d2e-9978-473d-a548-5642877bde78</wsa:MessageID>
+        <wsa:RelatesTo>urn:uuid:d49fe33b-eb6a-4b9a-a2ac-c9e33581ac12</wsa:RelatesTo>
+        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+        <wsse:Security>
+            <wsu:Timestamp wsu:Id="Timestamp-592c55c1-1d17-4600-b7ab-0d8a98ee6590">
+                <wsu:Created>2014-10-07T15:15:33Z</wsu:Created>
+                <wsu:Expires>2014-10-07T15:20:33Z</wsu:Expires>
+            </wsu:Timestamp>
+        </wsse:Security>
+    </soap:Header>
+    <soap:Body>
+        <UpdateResponse xmlns="http://exacttarget.com/wsdl/partnerAPI">
+            <Results>
+                <StatusCode>OK</StatusCode>
+                <StatusMessage>Updated Email.</StatusMessage>
+                <OrdinalID>0</OrdinalID>
+                <Object xsi:type="Email">
+                    <PartnerKey xsi:nil="true"/>
+                    <ID>514</ID>
+                    <ObjectID xsi:nil="true"/>
+                    <Subject>Updated Subject</Subject>
+                </Object>
+            </Results>
+            <RequestID>76fc35f6-84c6-42b2-b3ab-ea208b47b39b</RequestID>
+            <OverallStatus>OK</OverallStatus>
+        </UpdateResponse>
+    </soap:Body>
+</soap:Envelope>

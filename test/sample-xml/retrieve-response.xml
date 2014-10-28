@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+               xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+               xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <soap:Header>
+        <wsa:Action>RetrieveResponse</wsa:Action>
+        <wsa:MessageID>urn:uuid:6248e630-38a5-4329-90ba-7c731c1451fd</wsa:MessageID>
+        <wsa:RelatesTo>urn:uuid:b9cc2c0e-7ae0-464c-a540-961428c58608</wsa:RelatesTo>
+        <wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To>
+        <wsse:Security>
+            <wsu:Timestamp wsu:Id="Timestamp-14bd8d9b-6621-4a7c-8373-0692626b9b6b">
+                <wsu:Created>2014-10-07T15:05:37Z</wsu:Created>
+                <wsu:Expires>2014-10-07T15:10:37Z</wsu:Expires>
+            </wsu:Timestamp>
+        </wsse:Security>
+    </soap:Header>
+    <soap:Body>
+        <RetrieveResponseMsg xmlns="http://exacttarget.com/wsdl/partnerAPI">
+            <OverallStatus>OK</OverallStatus>
+            <RequestID>03465f86-f1e6-453d-b2e5-9f12dfc6dac7</RequestID>
+            <Results xsi:type="Email">
+                <Client>
+                    <ID>6227021</ID>
+                </Client>
+                <PartnerKey xsi:nil="true"/>
+                <CreatedDate>2014-04-07T18:59:58.293</CreatedDate>
+                <ModifiedDate>2014-04-07T19:00:54.267</ModifiedDate>
+                <ID>90</ID>
+                <ObjectID xsi:nil="true"/>
+                <CustomerKey>2DDDD92C-81C1-4D1C-AE5E-26F5A7977356</CustomerKey>
+                <Name>SOAP_TEST</Name>
+                <CategoryID>226</CategoryID>
+                <HTMLBody>%= now() =%</HTMLBody>
+                <TextBody/>
+                <Subject>SOAP_TEST</Subject>
+                <IsActive>true</IsActive>
+                <IsHTMLPaste>true</IsHTMLPaste>
+                <EmailType>Normal</EmailType>
+                <CharacterSet>utf-8</CharacterSet>
+                <HasDynamicSubjectLine>false</HasDynamicSubjectLine>
+                <ContentCheckStatus>Not Checked</ContentCheckStatus>
+            </Results>
+        </RetrieveResponseMsg>
+    </soap:Body>
+</soap:Envelope>
