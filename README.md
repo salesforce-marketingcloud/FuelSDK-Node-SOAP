@@ -15,7 +15,7 @@ This library allows users access to ExactTarget's SOAP API at a low level.
     * Required: no
     * Type: `String`
     * Default: https://webservice.exacttarget.com/Service.asmx
-    
+
 ## API
 
 * **describe( type, callback )**
@@ -57,19 +57,24 @@ var filter = {
     rightOperand: 'Test Email'
 };
 
-SoapClient.retrieve( 
-    'Email', 
-    ["ID", "Name", "Subject", "CategoryID", "EmailType"], 
+SoapClient.retrieve(
+    'Email',
+    ["ID", "Name", "Subject", "CategoryID", "EmailType"],
     filter,
     function( err, res ) {
         if ( err ) {
             // error here
             console.log( err );
         }
-        
+
         console.log( res.body );
     }
 );
 ```
 
+## Contributing
+
+Please checkout our [`.jshintrc`][2] file and follow the linting rules when contributing. In addition, this project uses **tabs** not spaces.
+
 [1]: https://github.com/ExactTarget/Fuel-Node-Auth#initialization
+[2]: https://github.com/ExactTarget/Fuel-Node-SOAP/blob/master/.jshintrc
