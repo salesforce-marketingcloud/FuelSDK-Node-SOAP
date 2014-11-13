@@ -45,12 +45,12 @@ module.exports = function( grunt ) {
 				, updateConfigs: [ 'pkg' ]
 				, commit: true
 				, commitMessage: 'Release %VERSION%'
-				, commitFiles: [ 'package.json' ]
+				, commitFiles: [ 'package.json', 'README.md' ]
 				, createTag: true
 				, tagName: '%VERSION%'
 				, tagMessage: '%VERSION%'
 				, push: true
-				, pushTo: 'origin'
+				, pushTo: 'upstream'
 				, gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
 			}
 		}
