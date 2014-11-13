@@ -1,4 +1,4 @@
-Fuel SOAP Client (for Node.js)
+Fuel SOAP Client (for Node.js) [![Build Status](https://travis-ci.org/ExactTarget/Fuel-Node-SOAP.svg?branch=master)](https://travis-ci.org/ExactTarget/Fuel-Node-SOAP)
 =============
 
 This library allows users access to ExactTarget's SOAP API at a low level.
