@@ -19,10 +19,10 @@ This library allows users access to ExactTarget's SOAP API at a low level.
 ## API
 
 * **describe( type, callback )**
-    * `type` - object type **required**
+    * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
     * `callback` - executed after task is completed. **required**
 * **retrieve( type, props, filter, callback )**
-    * `type` - object type. **required**
+    * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
     * `props` - object properties to be returned **required**
     * `filter` - filter object
     * `filter.leftOperand` - property or filter object
@@ -30,9 +30,9 @@ This library allows users access to ExactTarget's SOAP API at a low level.
     * `filter.rightOperand` - value or filter object
     * `callback` - executed after task is completed. **required**
 * **create | update | delete( type, props, options, callback )**
-    * `type` - object type **required**
+    * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
     * `props` - object properties and values. **required**
-    * `options` - options object
+    * `options` - options object. [see method options](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/options/)
     * `callback` - executed after task is completed. **required**
 
 ## Setting up the client
