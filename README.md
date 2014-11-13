@@ -25,6 +25,9 @@ This library allows users access to ExactTarget's SOAP API at a low level.
     * `type` - object type. **required**
     * `props` - object properties to be returned **required**
     * `filter` - filter object
+    * `filter.leftOperand` - property or filter object
+    * `filter.operator` - [Simple](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/simplefilterpart/) or [Complex](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/complexfilterpart/) operator
+    * `filter.rightOperand` - value or filter object
     * `callback` - executed after task is completed. **required**
 * **create | update | delete( type, props, options, callback )**
     * `type` - object type **required**
@@ -52,8 +55,8 @@ var SoapClient = new FuelSoap( options );
 
 ```js
 var filter = {
-    leftOperand: 'Name'
-    operator: 'equals'
+    leftOperand: 'Name',
+    operator: 'equals',
     rightOperand: 'Test Email'
 };
 
@@ -61,13 +64,16 @@ SoapClient.retrieve(
     'Email',
     ["ID", "Name", "Subject", "CategoryID", "EmailType"],
     filter,
-    function( err, res ) {
+    function( err, response ) {
         if ( err ) {
             // error here
             console.log( err );
+            return;
         }
 
-        console.log( res.body );
+        // response.body === parsed soap response (JSON)
+        // response.res === full response from request client
+        console.log( response.body );
     }
 );
 ```
