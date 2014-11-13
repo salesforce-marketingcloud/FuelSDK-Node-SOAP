@@ -52,22 +52,25 @@ var SoapClient = new FuelSoap( options );
 
 ```js
 var filter = {
-    leftOperand: 'Name'
-    operator: 'equals'
-    rightOperand: 'Test Email'
+    leftOperand: 'Name' // Property or filter object
+    operator: 'equals' // [Simple](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/simplefilterpart/) or [Complex](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/complexfilterpart/) operator
+    rightOperand: 'Test Email' // Value or filter object
 };
 
 SoapClient.retrieve(
     'Email',
     ["ID", "Name", "Subject", "CategoryID", "EmailType"],
     filter,
-    function( err, res ) {
+    function( err, response ) {
         if ( err ) {
             // error here
             console.log( err );
+            return;
         }
 
-        console.log( res.body );
+        // response.body === parsed soap response (JSON)
+        // response.res === full response from request client
+        console.log( response.body );
     }
 );
 ```
