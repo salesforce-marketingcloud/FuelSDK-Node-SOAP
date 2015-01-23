@@ -117,6 +117,7 @@ SoapClient.retrieve(
 * Aydrian J. Howard - [twitter](https://twitter.com/aydrianh), [github](https://github.com/aydrian)
 * Alex Vernacchia - [twitter](https://twitter.com/vernacchia), [github](https://github.com/vernak2539)
 * Kelly Andrews - [twitter](https://twitter.com/kellyjandrews), [github](https://github.com/kellyjandrews)
+* Jimmy Burgess - [github](https://github.com/jimmyburgess91)
 
 ## Contributing
 
