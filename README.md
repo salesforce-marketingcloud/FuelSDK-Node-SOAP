@@ -3,6 +3,10 @@ Fuel SOAP Client (for Node.js) [![Build Status](https://travis-ci.org/ExactTarge
 
 This library allows users access to ExactTarget's SOAP API at a low level.
 
+```
+npm install fuel-soap --save
+```
+
 ## Initialization
 
 **new FuelSoap( options )** - Initialization
