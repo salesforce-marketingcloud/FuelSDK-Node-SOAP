@@ -137,7 +137,7 @@ describe( 'SOAP methods', function() {
 		});
 	});
 	
-		describe( 'retrieve', function () {
+	describe( 'retrieve', function () {
 		it( 'should deliver a retrieve + response', function(done) {
 			// setting up spy and soap client
 			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
