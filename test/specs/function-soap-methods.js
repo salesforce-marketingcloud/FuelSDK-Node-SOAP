@@ -116,6 +116,68 @@ describe( 'SOAP methods', function() {
 					"ModifiedDate"
 				],
 				{
+					filter: {
+						leftOperand: 'Name',
+						operator: 'equals',
+						rightOperand: 'DS_TEST'
+					},
+					clientIDs: [{ID:6227021}]
+				},
+				function( err, data ) {
+					// need to make sure we called soapRequest method
+					expect( soapRequestSpy.calledOnce ).to.be.true;
+
+					// making sure original request was retrieve
+					expect( data.res.req._headers.soapaction.toLowerCase() ).to.equal( 'retrieve' );
+
+					FuelSoap.prototype.soapRequest.restore(); // restoring function
+					done();
+				}
+			);
+		});
+	});
+	
+	describe( 'retrieve', function () {
+		it( 'should deliver a retrieve + response', function(done) {
+			// setting up spy and soap client
+			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
+
+			// initialization options
+			var options = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var SoapClient = new FuelSoap( options );
+
+			// faking auth
+			SoapClient.AuthClient.accessToken = 'testForSoap';
+			SoapClient.AuthClient.expiration  = 111111111111;
+
+			SoapClient.retrieve(
+				'Email',
+				[
+					"ID",
+					"Client.ID",
+					"Name",
+					"CategoryID",
+					"HTMLBody",
+					"TextBody",
+					"Subject",
+					"IsActive",
+					"IsHTMLPaste",
+					"EmailType",
+					"CharacterSet",
+					"HasDynamicSubjectLine",
+					"ContentCheckStatus",
+					"ContentAreas",
+					"CustomerKey",
+					"CreatedDate",
+					"ModifiedDate"
+				],
+				{
 					leftOperand: 'Name',
 					operator: 'equals',
 					rightOperand: 'DS_TEST'

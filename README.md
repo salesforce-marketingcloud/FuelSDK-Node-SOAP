@@ -58,16 +58,18 @@ var SoapClient = new FuelSoap( options );
 ## Examples
 
 ```js
-var filter = {
-    leftOperand: 'Name',
-    operator: 'equals',
-    rightOperand: 'Test Email'
+var options = {
+	filter: {
+		leftOperand: 'Name',
+		operator: 'equals',
+		rightOperand: 'Test Email'
+	}
 };
 
 SoapClient.retrieve(
     'Email',
     ["ID", "Name", "Subject", "CategoryID", "EmailType"],
-    filter,
+    {"options":options},
     function( err, response ) {
         if ( err ) {
             // error here
@@ -81,12 +83,41 @@ SoapClient.retrieve(
     }
 );
 ```
+##Example with specifying business unit
+```js
+var options = {
+	filter: {
+		leftOperand: 'Name',
+		operator: 'equals',
+		rightOperand:  'Test Folder'
+	},
+	clientIDs: [{ID:12345}]
+};
+
+SoapClient.retrieve(
+	'DataFolder',
+	["ID"],
+	{"options":options},
+	function( err, response ) {
+		if ( err ) {
+			// error here
+			console.log( err );
+			return;
+		}
+
+		// response.body === parsed soap response (JSON)
+		// response.res === full response from request client
+		console.log(response.body);
+	}
+);
+```
 
 ## Contributors
 
 * Aydrian J. Howard - [twitter](https://twitter.com/aydrianh), [github](https://github.com/aydrian)
 * Alex Vernacchia - [twitter](https://twitter.com/vernacchia), [github](https://github.com/vernak2539)
 * Kelly Andrews - [twitter](https://twitter.com/kellyjandrews), [github](https://github.com/kellyjandrews)
+* Jimmy Burgess - [github](https://github.com/jimmyburgess91)
 
 ## Contributing
 
