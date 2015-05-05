@@ -100,6 +100,12 @@ module.exports = function(port) {
 				return;
 			}
 
+			if( soapAction.toLowerCase() === 'execute' ) {
+				res.statusCode = 200;
+				res.end(sampleResponses.execute);
+				return;
+			}
+
 			// coverall
 			res.statusCode = 500;
 			res.end();

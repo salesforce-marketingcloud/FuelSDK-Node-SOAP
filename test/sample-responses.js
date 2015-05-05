@@ -38,6 +38,7 @@ var retrieveResponse = readFileSync( './sample-xml/retrieve-response.xml' );
 var createResponse   = readFileSync( './sample-xml/create-response.xml' );
 var updateResponse   = readFileSync( './sample-xml/update-response.xml' );
 var deleteResponse   = readFileSync( './sample-xml/delete-response.xml' );
+var executeResponse   = readFileSync( './sample-xml/execute-response.xml' );
 
 module.exports = {
 	describe: describeRepsonse
@@ -45,4 +46,5 @@ module.exports = {
 	, create: createResponse
 	, update: updateResponse
 	, delete: deleteResponse
+    , execute: executeResponse
 };
