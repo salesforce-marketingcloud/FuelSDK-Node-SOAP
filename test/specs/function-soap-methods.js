@@ -248,4 +248,41 @@ describe( 'SOAP methods', function() {
 			);
 		});
 	});
+
+	describe( 'execute', function() {
+		it( 'should deliver an execute + response', function(done) {
+			// setting up spy and soap client
+			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
+
+			// initialization options
+			var options = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var SoapClient = new FuelSoap( options );
+
+			// faking auth
+			SoapClient.AuthClient.accessToken = 'testForSoap';
+			SoapClient.AuthClient.expiration  = 111111111111;
+
+			SoapClient.execute( 'LogUnsubEvent',
+				{
+					ID: 514
+				},
+				function( err, data ) {
+					// need to make sure we called soapRequest method
+					expect( soapRequestSpy.calledOnce ).to.be.true;
+
+					// making sure original request was delete
+					expect( data.res.req._headers.soapaction.toLowerCase() ).to.equal( 'execute' );
+
+					FuelSoap.prototype.soapRequest.restore(); // restoring function
+					done();
+				}
+			);
+		});
+	});
 });

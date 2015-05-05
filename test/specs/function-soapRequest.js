@@ -96,6 +96,7 @@ describe( 'soapRequest method', function() {
 			key: 'DefinitionResponseMsg',
 			retry: false
 		}, function(err, data) {
+			expect(err).to.not.exist;
 			expect( data.res.req.method).to.equal( 'POST' );
 			expect( data.res.req._headers.soapaction.toLowerCase() ).to.equal( 'describe' );
 		});
