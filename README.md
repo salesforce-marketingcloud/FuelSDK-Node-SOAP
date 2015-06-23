@@ -69,7 +69,7 @@ var options = {
 SoapClient.retrieve(
     'Email',
     ["ID", "Name", "Subject", "CategoryID", "EmailType"],
-    {"options":options},
+    options,
     function( err, response ) {
         if ( err ) {
             // error here
@@ -97,7 +97,7 @@ var options = {
 SoapClient.retrieve(
 	'DataFolder',
 	["ID"],
-	{"options":options},
+	options,
 	function( err, response ) {
 		if ( err ) {
 			// error here
