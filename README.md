@@ -125,6 +125,7 @@ Please checkout our [`.jshintrc`][2] file and follow the linting rules when cont
 
 ## ChangeLog
 
+* **releases after v1 will have their notes in the 'releases' section**
 * **1.0.0** - 2014-11-13
     * add original response to the callback - *breaking*
     * initial unit tests
