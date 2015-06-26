@@ -25,13 +25,14 @@ npm install fuel-soap --save
 * **describe( type, callback )**
     * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
     * `callback` - executed after task is completed. **required**
-* **retrieve( type, props, filter, callback )**
+* **retrieve( type, props, options, callback )**
     * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
     * `props` - object properties to be returned **required**
-    * `filter` - filter object
-    * `filter.leftOperand` - property or filter object
-    * `filter.operator` - [Simple](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/simpleoperators/) or [Logical](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/logicaloperators/) operator
-    * `filter.rightOperand` - value or filter object
+    * `options` - options object
+    	* `options.filter` - filter object
+    		* `filter.leftOperand` - property or filter object
+    		* `filter.operator` - [Simple](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/simpleoperators/) or [Logical](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/logicaloperators/) operator
+    		* `filter.rightOperand` - value or filter object
     * `callback` - executed after task is completed. **required**
 * **create | update | delete( type, props, options, callback )**
     * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
