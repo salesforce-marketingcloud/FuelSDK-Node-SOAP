@@ -40,78 +40,11 @@ npm install fuel-soap --save
     * `options` - options object. [see method options](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/options/)
     * `callback` - executed after task is completed. **required**
 
-## Setting up the client
-
-```js
-var FuelSoap = require( 'fuel-soap' );
-var options = {
-    auth: {
-        clientId: 'clientId'
-        , clientSecret: 'clientSecret'
-    }
-    , soapEndpoint: 'https://webservice.s6.exacttarget.com/Service.asmx' // default --> https://webservice.exacttarget.com/Service.asmx
-};
-
-var SoapClient = new FuelSoap( options );
-```
-
-
 ## Examples
 
-```js
-var options = {
-	filter: {
-		leftOperand: 'Name',
-		operator: 'equals',
-		rightOperand: 'Test Email'
-	}
-};
-
-SoapClient.retrieve(
-    'Email',
-    ["ID", "Name", "Subject", "CategoryID", "EmailType"],
-    options,
-    function( err, response ) {
-        if ( err ) {
-            // error here
-            console.log( err );
-            return;
-        }
-
-        // response.body === parsed soap response (JSON)
-        // response.res === full response from request client
-        console.log( response.body );
-    }
-);
-```
-##Example with specifying business unit
-```js
-var options = {
-	filter: {
-		leftOperand: 'Name',
-		operator: 'equals',
-		rightOperand:  'Test Folder'
-	},
-	clientIDs: [{ID:12345}]
-};
-
-SoapClient.retrieve(
-	'DataFolder',
-	["ID"],
-	options,
-	function( err, response ) {
-		if ( err ) {
-			// error here
-			console.log( err );
-			return;
-		}
-
-		// response.body === parsed soap response (JSON)
-		// response.res === full response from request client
-		console.log(response.body);
-	}
-);
-```
+1. [Setting up the client][3]
+2. [Simple Retrieve][4]
+3. [Business Unit Retrieve][5]
 
 ## Contributors
 
@@ -119,6 +52,7 @@ SoapClient.retrieve(
 * Alex Vernacchia - [twitter](https://twitter.com/vernacchia), [github](https://github.com/vernak2539)
 * Kelly Andrews - [twitter](https://twitter.com/kellyjandrews), [github](https://github.com/kellyjandrews)
 * Jimmy Burgess - [github](https://github.com/jimmyburgess91)
+* Nathan LaFreniere - [github](https://github.com/nlf)
 
 ## Contributing
 
@@ -134,3 +68,6 @@ Please checkout our [`.jshintrc`][2] file and follow the linting rules when cont
 
 [1]: https://github.com/ExactTarget/Fuel-Node-Auth#initialization
 [2]: https://github.com/ExactTarget/Fuel-Node-SOAP/blob/master/.jshintrc
+[3]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-1_setup-js
+[4]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-2_simple-retrieve-js
+[5]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-3_business-unit-retrieve-js
