@@ -101,4 +101,53 @@ describe( 'soapRequest method', function() {
 			expect( data.res.req._headers.soapaction.toLowerCase() ).to.equal( 'describe' );
 		});
 	});
+	
+	it( 'should pass a custom header if present', function() {
+		var key = 'customheaderkey';
+		var val = 'customHeaderVal';
+		var reqOptions = {headers:{}};
+		reqOptions.headers[key] = val;
+		var body = {
+			'RetrieveRequestMsg': {
+				'$': {
+					'xmlns': 'http://exacttarget.com/wsdl/partnerAPI'
+				},
+				'RetrieveRequest': {
+					'ObjectType': 'Email',
+					'Properties': ['ID','Name']
+				}
+			}
+		};
+
+		SoapClient.soapRequest({
+			action: 'Retrieve',
+			req: body,
+			key: 'RetrieveResponseMsg',
+			retry: true,
+			reqOptions: reqOptions
+		}, function(err, data) {
+			expect(err).to.not.exist;  
+			expect(data)
+				.to.have.deep.property('res.req._headers.'+key, val);
+		});
+		
+		var key2 = 'customheaderkey2';
+		var val2 = 'customHeaderVal2';
+		var reqOptions2 = {headers:{}};
+		reqOptions2.headers[key2] = val2;		
+
+		SoapClient.soapRequest({
+			action: 'Retrieve',
+			req: body,
+			key: 'RetrieveResponseMsg',
+			retry: true,
+			reqOptions: reqOptions2
+		}, function(err, data) {
+			expect(err).to.not.exist;  
+			expect(data)
+				.to.have.deep.property('res.req._headers.'+key2, val2);
+			expect(data)
+				.to.not.have.deep.property('res.req._headers.'+key);				
+		});
+	});	
 });
