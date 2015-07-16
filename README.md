@@ -45,6 +45,7 @@ npm install fuel-soap --save
 1. [Setting up the client][3]
 2. [Simple Retrieve][4]
 3. [Business Unit Retrieve][5]
+4. [Custom Headers][6]
 
 ## Contributors
 
@@ -53,6 +54,7 @@ npm install fuel-soap --save
 * Kelly Andrews - [twitter](https://twitter.com/kellyjandrews), [github](https://github.com/kellyjandrews)
 * Jimmy Burgess - [github](https://github.com/jimmyburgess91)
 * Nathan LaFreniere - [github](https://github.com/nlf)
+* Drew Simmons - [github](https://github.com/timsim00)
 
 ## Contributing
 
@@ -71,3 +73,4 @@ Please checkout our [`.jshintrc`][2] file and follow the linting rules when cont
 [3]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-1_setup-js
 [4]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-2_simple-retrieve-js
 [5]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-3_business-unit-retrieve-js
+[6]: https://gist.github.com/vernak2539/a1b5c6e36f6c7f1fe63b
