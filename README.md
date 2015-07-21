@@ -1,7 +1,9 @@
-Fuel SOAP Client (for Node.js) [![Build Status](https://travis-ci.org/ExactTarget/Fuel-Node-SOAP.svg?branch=master)](https://travis-ci.org/ExactTarget/Fuel-Node-SOAP)
+Fuel SOAP Client (for Node.js) [![Build Status](https://travis-ci.org/salesforcefuel/FuelSDK-Node-SOAP.svg?branch=master)](https://travis-ci.org/salesforcefuel/FuelSDK-Node-SOAP)
 =============
 
-This library allows users access to ExactTarget's SOAP API at a low level.
+***This repo used to be located at https://github.com/exacttarget/Fuel-Node-SOAP***
+
+This library allows users access to the Salesforce Marketing Cloud (formerly ExactTarget) SOAP API at a low level.
 
 ```
 npm install fuel-soap --save
@@ -68,8 +70,8 @@ Please checkout our [`.jshintrc`][2] file and follow the linting rules when cont
     * initial unit tests
 * **0.1.0** - 2014-09-22 - 1st npm release
 
-[1]: https://github.com/ExactTarget/Fuel-Node-Auth#initialization
-[2]: https://github.com/ExactTarget/Fuel-Node-SOAP/blob/master/.jshintrc
+[1]: https://github.com/salesforcefuel/FuelSDK-Node-Auth/wiki/Initialization
+[2]: https://github.com/salesforcefuel/FuelSDK-Node-SOAP/blob/master/.jshintrc
 [3]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-1_setup-js
 [4]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-2_simple-retrieve-js
 [5]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-3_business-unit-retrieve-js

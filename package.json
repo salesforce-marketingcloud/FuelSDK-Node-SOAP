@@ -1,14 +1,14 @@
 {
   "name": "fuel-soap",
   "version": "1.2.0",
-  "description": "Node Library for performing SOAP API calls with ExactTarget Fuel.",
+  "description": "Node library for performing SOAP API calls to Salesforce Marketing Cloud (formerly ExactTarget).",
   "main": "./lib/fuel-soap.js",
   "scripts": {
     "test": "grunt jshint && ./node_modules/mocha/bin/mocha --reporter=spec test/specs/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ExactTarget/Fuel-Node-SOAP.git"
+    "url": "git@github.com:salesforcefuel/FuelSDK-Node-SOAP.git"
   },
   "author": "Aydrian J. Howard <ahoward@exacttarget.com>",
   "contributors": [
