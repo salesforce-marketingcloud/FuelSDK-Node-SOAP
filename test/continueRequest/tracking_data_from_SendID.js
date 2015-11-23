@@ -13,7 +13,7 @@
  *
  */
 
-"use strict";
+'use strict';
 
 var FuelSoap = require('../../lib/fuel-soap'), 
 		   _ = require('lodash');
@@ -58,7 +58,7 @@ function calculateValues() {
 
 	function parseRate(value) {
 		return parseFloat( value.toFixed(2) );
-	};
+	}
 
 	// DeliverabilityRate
 	d.DeliverabilityRate = parseRate( 100 - ( (d.BounceEvent / d.SentEvent) * 100 ) );
@@ -70,31 +70,31 @@ function calculateValues() {
 	d.UnsubscribeRate = parseRate( (d.UnsubEvent / totalDelivered) * 100);
 
 	console.log(d);
-};
+}
 
 
 function checkDone() {
 	// '_' here refers to lodash
-	if (_.all(outputDone, Boolean) == true) {
+	if (_.all(outputDone, Boolean) === true) {
 		calculateValues();
-	};
-};
+	}
+}
 
 
 function countArray(err, response) {
-	if (err) throw err;
+	if (err) {throw err;}
 
-	if (response.body.OverallStatus == 'MoreDataAvailable') {
+	if (response.body.OverallStatus === 'MoreDataAvailable') {
 		// Add value to global dataOutput
 		// dataOutput[this.EventType] += response.body.Results.length; 
 		// will always = 2500. So instead we could write this as: 
 		dataOutput[this.EventType] += 2500;
 		// Now grab the response.body.RequestID and pass it to getEventData until OverallStatus == OK
-		getEventData(this.EventType, this.sendID, response.body.RequestID)
+		getEventData(this.EventType, this.sendID, response.body.RequestID);
 
 		console.log('...');
 
-	} else if (response.body.OverallStatus == 'OK') {
+	} else if (response.body.OverallStatus === 'OK') {
 		// Add value to global dataOutput
 		dataOutput[this.EventType] += response.body.Results.length;
 		// Mark this eventType as done
@@ -109,8 +109,8 @@ function countArray(err, response) {
 	} else {
 		console.log('Unexpected OverallStatus value in response: ' + response.body.OverallStatus );
 
-	};
-};
+	}
+}
 
 
 function getEventData(EventType, sendID, continueRequest) {
@@ -123,11 +123,11 @@ function getEventData(EventType, sendID, continueRequest) {
 	};
 
 	if (continueRequest) {
-		options.continueRequest = continueRequest
-	};
+		options.continueRequest = continueRequest;
+	}
 
 	SoapClient.retrieve(EventType, ['SubscriberKey'], options, countArray.bind( {EventType: EventType, sendID: sendID} ));
-};
+}
 
 
 function getTrackingData(sendID) {
@@ -137,8 +137,8 @@ function getTrackingData(sendID) {
 
 	for (var i=0; i < EventTypeArray.length; i++) {
 		getEventData(EventTypeArray[i], sendID);
-	};
-};
+	}
+}
 
 
 // Add SendID here
