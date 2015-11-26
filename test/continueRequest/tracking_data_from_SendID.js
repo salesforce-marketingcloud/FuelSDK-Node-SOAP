@@ -84,6 +84,8 @@ function checkDone() {
 function countArray(err, response) {
 	if (err) {throw err;}
 
+	/* jshint validthis: true */
+
 	if (response.body.OverallStatus === 'MoreDataAvailable') {
 		// Add value to global dataOutput
 		// dataOutput[this.EventType] += response.body.Results.length; 
