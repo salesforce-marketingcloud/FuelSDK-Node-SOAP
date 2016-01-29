@@ -101,6 +101,33 @@ describe( 'General Tests', function() {
 		expect( SoapClient.requestOptions.uri ).to.equal( 'https://www.exacttarget.com' );
 	});
 
+	it( 'should expect req options', function() {
+		var options = {
+			auth: {
+				clientId: 'testing'
+				, clientSecret: 'testing'
+			}
+			, reqOptions: {
+	            QueryAllAccounts: true
+	        }
+		}, SoapClient = new FuelSoap( options );
+
+		var body = {
+			'RetrieveRequestMsg': {
+				'$': {
+					'xmlns': 'http://exacttarget.com/wsdl/partnerAPI'
+				},
+				"RequestOptions": {}
+			}
+		};
+		
+		if( options.reqOptions ) {
+			body = SoapClient._addReqOptionsToRequestBody(body, options.reqOptions, 'RetrieveRequestMsg', 'RequestOptions');
+		}
+		
+		expect( body.RetrieveRequestMsg.RequestOptions.QueryAllAccounts ).to.be.true;
+	});
+
 	it( 'should have soapRequest on prototype', function() {
 		expect( FuelSoap.prototype.soapRequest ).to.be.a( 'function' );
 	});
@@ -159,5 +186,9 @@ describe( 'General Tests', function() {
 
 	it( 'should have _parseResponse on prototype', function() {
 		expect( FuelSoap.prototype._parseResponse ).to.be.a( 'function' );
+	});
+
+	it( 'should have _addReqOptionsToRequestBody on prototype', function() {
+		expect( FuelSoap.prototype._addReqOptionsToRequestBody ).to.be.a( 'function' );
 	});
 });
