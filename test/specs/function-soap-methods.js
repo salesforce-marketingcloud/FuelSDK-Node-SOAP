@@ -57,8 +57,8 @@ describe( 'SOAP methods', function() {
 		});
 	});
 
-	describe( 'retrieve', function () {
-		it( 'should deliver a retrieve + response', function(done) {
+	describe( 'SOAP Action retrieve', function () {
+		it( 'should deliver a retrieve + response with option clientIDs', function(done) {
 			// setting up spy and soap client
 			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
 
@@ -117,10 +117,8 @@ describe( 'SOAP methods', function() {
 				}
 			);
 		});
-	});
 
-	describe( 'retrieve', function () {
-		it( 'should deliver a retrieve + response', function(done) {
+		it( 'should deliver a retrieve + response without option clientIDs', function(done) {
 			// setting up spy and soap client
 			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
 
@@ -175,6 +173,61 @@ describe( 'SOAP methods', function() {
 					done();
 				}
 			);
+		});
+
+		it('should add QueryAllAccounts to body -> RetrieveRequestMsg -> RetrieveRequest', function(done) {
+			// Arrange
+			var initOptions = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var client = new FuelSoap(initOptions);
+			var soapRequestOptions = {
+				leftOperand: 'Name'
+				, operator: 'equals'
+				, rightOperand: 'DS_TEST'
+				, queryAllAccounts: true
+			};
+
+			sinon.stub(client, "soapRequest", function(options) {
+				// Assert
+				expect(options.req.RetrieveRequestMsg.RetrieveRequest.QueryAllAccounts).to.equal(true);
+				client.soapRequest.restore();
+				done();
+			});
+
+			// Act
+			client.retrieve('Email', ['ID'], soapRequestOptions, function(){});
+		});
+
+		it('should not add QueryAllAccounts to body -> RetrieveRequestMsg -> RetrieveRequest', function(done) {
+			// Arrange
+			var initOptions = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var client = new FuelSoap(initOptions);
+			var soapRequestOptions = {
+				leftOperand: 'Name'
+				, operator: 'equals'
+				, rightOperand: 'DS_TEST'
+			};
+
+			sinon.stub(client, "soapRequest", function(options) {
+				// Assert
+				expect(options.req.RetrieveRequestMsg.RetrieveRequest.QueryAllAccounts).to.be.undefined;
+				client.soapRequest.restore();
+				done();
+			});
+
+			// Act
+			client.retrieve('Email', ['ID'], soapRequestOptions, function(){});
 		});
 	});
 
