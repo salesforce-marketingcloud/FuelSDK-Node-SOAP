@@ -31,15 +31,17 @@ npm install fuel-soap --save
     * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
     * `props` - object properties to be returned **required**
     * `options` - options object
-    	* `options.filter` - filter object
-    		* `filter.leftOperand` - property or filter object
-    		* `filter.operator` - [Simple](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/simpleoperators/) or [Logical](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/logicaloperators/) operator
-    		* `filter.rightOperand` - value or filter object
+      * `options.queryAllAccounts` with a rvalue of `true` will include 'QueryAllAccounts' in RetrieveRequest object
+      * `options.filter` - filter object
+    	   * `filter.leftOperand` - property or filter object
+    	   * `filter.operator` - [Simple](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/simpleoperators/) or [Logical](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/logicaloperators/) operator
+    	   * `filter.rightOperand` - value or filter object
     * `callback` - executed after task is completed. **required**
 * **create | update | delete( type, props, options, callback )**
     * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
     * `props` - object properties and values. **required**
     * `options` - options object. [see method options](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/options/)
+      * `options.queryAllAccounts` with a value of `true` will include 'QueryAllAccounts' in Options object
     * `callback` - executed after task is completed. **required**
 
 ## Examples
