@@ -217,7 +217,7 @@ describe( 'SOAP methods', function() {
 		});
 	});
 
-	describe( 'update', function () {
+	describe( 'SOAP Action update', function () {
 		it( 'should deliver a update + response', function(done) {
 			// setting up spy and soap client
 			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
@@ -276,6 +276,28 @@ describe( 'SOAP methods', function() {
 
 			// Act
 			client.update('Email', { ID: 12345 }, soapRequestOptions, function(){});
+		});
+
+		it('should not add QueryAllAccounts to body -> UpdateRequest -> Options', function(done) {
+			// Arrange
+			var initOptions = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var client = new FuelSoap(initOptions);
+
+			sinon.stub(client, "soapRequest", function(options) {
+				// Assert
+				expect(options.req.UpdateRequest.Options).to.be.null;
+				client.soapRequest.restore();
+				done();
+			});
+
+			// Act
+			client.update('Email', { ID: 12345 }, function(){});
 		});
 	});
 
