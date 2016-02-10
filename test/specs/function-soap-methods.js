@@ -178,7 +178,7 @@ describe( 'SOAP methods', function() {
 		});
 	});
 
-	describe( 'create', function () {
+	describe( 'SOAP Action create', function () {
 		it( 'should deliver a create + response', function(done) {
 			// setting up spy and soap client
 			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
@@ -214,6 +214,51 @@ describe( 'SOAP methods', function() {
 					done();
 				}
 			);
+		});
+
+		it('should add QueryAllAccounts to body -> CreateRequest -> Options', function(done) {
+			// Arrange
+			var initOptions = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var client = new FuelSoap(initOptions);
+			var soapRequestOptions = { queryAllAccounts: true };
+
+			sinon.stub(client, "soapRequest", function(options) {
+				// Assert
+				expect(options.req.CreateRequest.Options.QueryAllAccounts).to.equal(true);
+				client.soapRequest.restore();
+				done();
+			});
+
+			// Act
+			client.create('Email', { ID: 12345 }, soapRequestOptions, function(){});
+		});
+
+		it('should not add QueryAllAccounts to body -> CreateRequest -> Options', function(done) {
+			// Arrange
+			var initOptions = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var client = new FuelSoap(initOptions);
+
+			sinon.stub(client, "soapRequest", function(options) {
+				// Assert
+				expect(options.req.CreateRequest.Options).to.equal.null;
+				client.soapRequest.restore();
+				done();
+			});
+
+			// Act
+			client.create('Email', { ID: 12345 }, function(){});
 		});
 	});
 
