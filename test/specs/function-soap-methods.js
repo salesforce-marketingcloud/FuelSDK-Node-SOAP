@@ -399,7 +399,7 @@ describe( 'SOAP methods', function() {
 		});
 	});
 
-	describe( 'delete', function () {
+	describe( 'SOAP Action delete', function () {
 		it( 'should deliver a delete + response', function(done) {
 			// setting up spy and soap client
 			var soapRequestSpy = sinon.spy( FuelSoap.prototype, 'soapRequest' );
@@ -433,6 +433,51 @@ describe( 'SOAP methods', function() {
 					done();
 				}
 			);
+		});
+
+		it('should add QueryAllAccounts to body -> DeleteRequest -> Options', function(done) {
+			// Arrange
+			var initOptions = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var client = new FuelSoap(initOptions);
+			var soapRequestOptions = { queryAllAccounts: true };
+
+			sinon.stub(client, "soapRequest", function(options) {
+				// Assert
+				expect(options.req.DeleteRequest.Options.QueryAllAccounts).to.equal(true);
+				client.soapRequest.restore();
+				done();
+			});
+
+			// Act
+			client.delete('Email', { ID: 12345 }, soapRequestOptions, function(){});
+		});
+
+		it('should not add QueryAllAccounts to body -> DeleteRequest -> Options', function(done) {
+			// Arrange
+			var initOptions = {
+				auth: {
+					clientId: 'testing'
+					, clientSecret: 'testing'
+				}
+				, soapEndpoint: localhost
+			};
+			var client = new FuelSoap(initOptions);
+
+			sinon.stub(client, "soapRequest", function(options) {
+				// Assert
+				expect(options.req.DeleteRequest.Options).to.be.null;
+				client.soapRequest.restore();
+				done();
+			});
+
+			// Act
+			client.delete('Email', { ID: 12345 }, function(){});
 		});
 	});
 
