@@ -13,10 +13,10 @@ var FuelSoap   = require('../../lib/fuel-soap');
 var port       = 4551;
 var localhost  = 'http://127.0.0.1:' + port + '/sample/soap/endpoint';
 
-describe( 'soapRequest custom headers', function() {
+describe('soapRequest custom headers', function() {
 	var server, SoapClient;
 
-	before( function() {
+	before(function() {
 		// setting up soap client for all tests to use
 		var options = {
 			auth: {
@@ -26,21 +26,21 @@ describe( 'soapRequest custom headers', function() {
 			, soapEndpoint: localhost
 		};
 
-		SoapClient = new FuelSoap( options );
+		SoapClient = new FuelSoap(options);
 
 		// faking auth
 		SoapClient.AuthClient.accessToken = 'testForSoap';
 		SoapClient.AuthClient.expiration = 111111111111;
 
 		// setting up server
-		server = mockserver( port );
+		server = mockserver(port);
 	});
 
-	after( function() {
+	after(function() {
 		server.close();
 	});
 
-	it( 'should pass a custom header if present', function() {
+	it('should pass a custom header if present', function() {
 		var key = 'customheaderkey';
 		var val = 'customHeaderVal';
 		var reqOptions = {headers:{}};

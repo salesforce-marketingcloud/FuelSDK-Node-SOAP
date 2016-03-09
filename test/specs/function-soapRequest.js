@@ -13,10 +13,10 @@ var FuelSoap   = require('../../lib/fuel-soap');
 var port       = 4550;
 var localhost  = 'http://127.0.0.1:' + port + '/sample/soap/endpoint';
 
-describe( 'soapRequest method', function() {
+describe('soapRequest method', function() {
 	var server, SoapClient;
 
-	before( function() {
+	before(function() {
 		// setting up soap client for all tests to use
 		var options = {
 			auth: {
@@ -26,39 +26,39 @@ describe( 'soapRequest method', function() {
 			, soapEndpoint: localhost
 		};
 
-		SoapClient = new FuelSoap( options );
+		SoapClient = new FuelSoap(options);
 
 		// faking auth
 		SoapClient.AuthClient.accessToken = 'testForSoap';
 		SoapClient.AuthClient.expiration = 111111111111;
 
 		// setting up server
-		server = mockServer( port );
+		server = mockServer(port);
 	});
 
-	after( function() {
+	after(function() {
 		server.close();
 	});
 
-	it( 'should throw an error when no options are passed', function() {
+	it('should throw an error when no options are passed', function() {
 		try {
-			SoapClient.soapRequest(null, function () {});
-		} catch ( err ) {
-			expect( err.name).to.equal( 'TypeError' );
-			expect( err.message).to.equal( 'options argument is required' );
+			SoapClient.soapRequest(null, function() {});
+		} catch (err) {
+			expect(err.name).to.equal('TypeError');
+			expect(err.message).to.equal('options argument is required');
 		}
 	});
 
-	it( 'should throw an error if no callback is present', function() {
+	it('should throw an error if no callback is present', function() {
 		try {
-			SoapClient.soapRequest( null, null );
-		} catch( err ) {
-			expect( err.name ).to.equal( 'TypeError' );
-			expect( err.message ).to.equal( 'callback argument is required' );
+			SoapClient.soapRequest(null, null);
+		} catch(err) {
+			expect(err.name).to.equal('TypeError');
+			expect(err.message).to.equal('callback argument is required');
 		}
 	});
 
-	it( 'should execute a describe call', function() {
+	it('should execute a describe call', function() {
 		var body = {
 			DefinitionRequestMsg: {
 				'$': {
@@ -79,8 +79,8 @@ describe( 'soapRequest method', function() {
 			retry: false
 		}, function(err, data) {
 			expect(err).to.not.exist;
-			expect( data.res.req.method).to.equal( 'POST' );
-			expect( data.res.req._headers.soapaction.toLowerCase() ).to.equal( 'describe' );
+			expect(data.res.req.method).to.equal('POST');
+			expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('describe');
 		});
 	});
 });
