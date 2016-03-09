@@ -7,7 +7,7 @@
 
 'use strict';
 
-var expect     = require('chai').expect;
+var assert     = require('assert');
 var sinon      = require('sinon');
 var mockServer = require('../mock-server');
 var FuelSoap   = require('../../lib/fuel-soap');
@@ -46,10 +46,10 @@ describe('SOAP methods', function() {
 
 			SoapClient.describe('Email', function(err, data) {
 				// need to make sure we called soapRequest method
-				expect(soapRequestSpy.calledOnce).to.be.true;
+				assert.ok(soapRequestSpy.calledOnce);
 
 				// making sure original request was describe
-				expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('describe');
+				assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'describe');
 
 				FuelSoap.prototype.soapRequest.restore(); // restoring function
 				done();
@@ -107,10 +107,10 @@ describe('SOAP methods', function() {
 				},
 				function(err, data) {
 					// need to make sure we called soapRequest method
-					expect(soapRequestSpy.calledOnce).to.be.true;
+					assert.ok(soapRequestSpy.calledOnce);
 
 					// making sure original request was retrieve
-					expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('retrieve');
+					assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'retrieve');
 
 					FuelSoap.prototype.soapRequest.restore(); // restoring function
 					done();
@@ -164,10 +164,10 @@ describe('SOAP methods', function() {
 				},
 				function(err, data) {
 					// need to make sure we called soapRequest method
-					expect(soapRequestSpy.calledOnce).to.be.true;
+					assert.ok(soapRequestSpy.calledOnce);
 
 					// making sure original request was retrieve
-					expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('retrieve');
+					assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'retrieve');
 
 					FuelSoap.prototype.soapRequest.restore(); // restoring function
 					done();
@@ -194,7 +194,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.RetrieveRequestMsg.RetrieveRequest.QueryAllAccounts).to.equal(true);
+				assert.ok(options.req.RetrieveRequestMsg.RetrieveRequest.QueryAllAccounts);
 				client.soapRequest.restore();
 				done();
 			});
@@ -221,7 +221,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.RetrieveRequestMsg.RetrieveRequest.QueryAllAccounts).to.be.undefined;
+				assert.equal(options.req.RetrieveRequestMsg.RetrieveRequest.QueryAllAccounts, undefined);
 				client.soapRequest.restore();
 				done();
 			});
@@ -258,10 +258,10 @@ describe('SOAP methods', function() {
 				},
 				function(err, data) {
 					// need to make sure we called soapRequest method
-					expect(soapRequestSpy.calledOnce).to.be.true;
+					assert.ok(soapRequestSpy.calledOnce);
 
 					// making sure original request was create
-					expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('create');
+					assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'create');
 
 					FuelSoap.prototype.soapRequest.restore(); // restoring function
 					done();
@@ -283,7 +283,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.CreateRequest.Options.QueryAllAccounts).to.equal(true);
+				assert.ok(options.req.CreateRequest.Options.QueryAllAccounts);
 				client.soapRequest.restore();
 				done();
 			});
@@ -305,7 +305,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.CreateRequest.Options).to.equal.null;
+				assert.equal(options.req.CreateRequest.Options, null);
 				client.soapRequest.restore();
 				done();
 			});
@@ -342,10 +342,10 @@ describe('SOAP methods', function() {
 				},
 				function(err, data) {
 					// need to make sure we called soapRequest method
-					expect(soapRequestSpy.calledOnce).to.be.true;
+					assert.ok(soapRequestSpy.calledOnce);
 
 					// making sure original request was update
-					expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('update');
+					assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'update');
 
 					FuelSoap.prototype.soapRequest.restore(); // restoring function
 					done();
@@ -367,7 +367,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.UpdateRequest.Options.QueryAllAccounts).to.equal(true);
+				assert.ok(options.req.UpdateRequest.Options.QueryAllAccounts);
 				client.soapRequest.restore();
 				done();
 			});
@@ -389,7 +389,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.UpdateRequest.Options).to.be.null;
+				assert.equal(options.req.UpdateRequest.Options, null);
 				client.soapRequest.restore();
 				done();
 			});
@@ -424,10 +424,10 @@ describe('SOAP methods', function() {
 				},
 				function(err, data) {
 					// need to make sure we called soapRequest method
-					expect(soapRequestSpy.calledOnce).to.be.true;
+					assert.ok(soapRequestSpy.calledOnce);
 
 					// making sure original request was delete
-					expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('delete');
+					assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'delete');
 
 					FuelSoap.prototype.soapRequest.restore(); // restoring function
 					done();
@@ -449,7 +449,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.DeleteRequest.Options.QueryAllAccounts).to.equal(true);
+				assert.ok(options.req.DeleteRequest.Options.QueryAllAccounts);
 				client.soapRequest.restore();
 				done();
 			});
@@ -471,7 +471,7 @@ describe('SOAP methods', function() {
 
 			sinon.stub(client, "soapRequest", function(options) {
 				// Assert
-				expect(options.req.DeleteRequest.Options).to.be.null;
+				assert.equal(options.req.DeleteRequest.Options, null);
 				client.soapRequest.restore();
 				done();
 			});
@@ -506,10 +506,10 @@ describe('SOAP methods', function() {
 				},
 				function(err, data) {
 					// need to make sure we called soapRequest method
-					expect(soapRequestSpy.calledOnce).to.be.true;
+					assert.ok(soapRequestSpy.calledOnce);
 
 					// making sure original request was delete
-					expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('execute');
+					assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'execute');
 
 					FuelSoap.prototype.soapRequest.restore(); // restoring function
 					done();

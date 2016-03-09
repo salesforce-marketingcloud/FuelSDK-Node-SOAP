@@ -7,7 +7,7 @@
 
 'use strict';
 
-var expect     = require('chai').expect;
+var assert     = require('assert');
 var mockServer = require('../mock-server');
 var FuelSoap   = require('../../lib/fuel-soap');
 var port       = 4550;
@@ -44,8 +44,8 @@ describe('soapRequest method', function() {
 		try {
 			SoapClient.soapRequest(null, function() {});
 		} catch (err) {
-			expect(err.name).to.equal('TypeError');
-			expect(err.message).to.equal('options argument is required');
+			assert.equal(err.name, 'TypeError');
+			assert.equal(err.message, 'options argument is required');
 		}
 	});
 
@@ -53,8 +53,8 @@ describe('soapRequest method', function() {
 		try {
 			SoapClient.soapRequest(null, null);
 		} catch(err) {
-			expect(err.name).to.equal('TypeError');
-			expect(err.message).to.equal('callback argument is required');
+			assert.equal(err.name, 'TypeError');
+			assert.equal(err.message, 'callback argument is required');
 		}
 	});
 
@@ -78,9 +78,9 @@ describe('soapRequest method', function() {
 			key: 'DefinitionResponseMsg',
 			retry: false
 		}, function(err, data) {
-			expect(err).to.not.exist;
-			expect(data.res.req.method).to.equal('POST');
-			expect(data.res.req._headers.soapaction.toLowerCase()).to.equal('describe');
+			assert.equal(err, null);
+			assert.equal(data.res.req.method, 'POST');
+			assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'describe');
 		});
 	});
 });
