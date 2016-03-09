@@ -5,17 +5,17 @@
  * Legal Text is available at https://github.com/forcedotcom/Legal/blob/master/License.txt
  */
 
-var http = require('http');
-var bodyParser = require('body-parser');
+'use strict';
 
+var bodyParser = require('body-parser');
+var http       = require('http');
+
+var sampleResponses = require('./sample-responses');
 var validUrls = {
 	base: '/sample/soap/endpoint'
 };
-var sampleResponses = require('./sample-responses');
 
 module.exports = function(port) {
-	'use strict';
-
 	return http.createServer(function(req, res) {
 
 		var _bodyParser   = bodyParser.json();
@@ -24,15 +24,15 @@ module.exports = function(port) {
 		res.setHeader('Content-Type', 'text/xml');
 
 		// check for valid URL (404)
-		for( var key in validUrls ) {
-			if( validUrls.hasOwnProperty( key ) ) {
-				if( validUrls[ key ] === req.url ) {
+		for(var key in validUrls) {
+			if(validUrls.hasOwnProperty(key)) {
+				if(validUrls[ key ] === req.url) {
 					validUrlCheck = true;
 				}
 			}
 		}
 
-		if( !validUrlCheck ) {
+		if(!validUrlCheck) {
 			res.statusCode = 404;
 			res.end();
 			return;
@@ -51,37 +51,37 @@ module.exports = function(port) {
 				return;
 			}
 
-			if( soapAction.toLowerCase() === 'describe' ) {
+			if(soapAction.toLowerCase() === 'describe') {
 				res.statusCode = 200;
 				res.end(sampleResponses.describe);
 				return;
 			}
 
-			if( soapAction.toLowerCase() === 'retrieve' ) {
+			if(soapAction.toLowerCase() === 'retrieve') {
 				res.statusCode = 200;
 				res.end(sampleResponses.retrieve);
 				return;
 			}
 
-			if( soapAction.toLowerCase() === 'create' ) {
+			if(soapAction.toLowerCase() === 'create') {
 				res.statusCode = 200;
 				res.end(sampleResponses.create);
 				return;
 			}
 
-			if( soapAction.toLowerCase() === 'update' ) {
+			if(soapAction.toLowerCase() === 'update') {
 				res.statusCode = 200;
 				res.end(sampleResponses.update);
 				return;
 			}
 
-			if( soapAction.toLowerCase() === 'delete' ) {
+			if(soapAction.toLowerCase() === 'delete') {
 				res.statusCode = 200;
 				res.end(sampleResponses.delete);
 				return;
 			}
 
-			if( soapAction.toLowerCase() === 'execute' ) {
+			if(soapAction.toLowerCase() === 'execute') {
 				res.statusCode = 200;
 				res.end(sampleResponses.execute);
 				return;

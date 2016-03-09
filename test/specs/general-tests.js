@@ -7,17 +7,17 @@
 
 'use strict';
 
-var expect   = require( 'chai' ).expect;
-var FuelSoap = require( '../../lib/fuel-soap' );
-var FuelAuth = require( 'fuel-auth' );
+var assert   = require('assert');
+var FuelSoap = require('../../lib/fuel-soap');
+var FuelAuth = require('fuel-auth');
 
-describe( 'General Tests', function() {
+describe('General Tests', function() {
 
-	it( 'should be a constructor', function() {
-		expect( FuelSoap ).to.be.a( 'function' );
+	it('should be a constructor', function() {
+		assert.equal(typeof FuelSoap, 'function');
 	});
 
-	it( 'should require auth options', function() {
+	it('should require auth options', function() {
 		var SoapClient;
 		var options = {
 			auth: {
@@ -28,41 +28,41 @@ describe( 'General Tests', function() {
 
 		try {
 			SoapClient = new FuelSoap();
-		} catch ( err ) {
-			expect( err.message).to.equal( 'clientId or clientSecret is missing or invalid' );
+		} catch (err) {
+			assert.equal(err.message, 'clientId or clientSecret is missing or invalid');
 		}
 
 		try {
-			SoapClient = new FuelSoap( options );
-		} catch ( err ) {
-			expect( true ).to.be.false;
+			SoapClient = new FuelSoap(options);
+		} catch (err) {
+			assert.ok(false);
 		}
 
 		// soap client should have an instance of an auth client
-		expect( SoapClient.AuthClient instanceof FuelAuth).to.be.true;
+		assert.ok(SoapClient.AuthClient instanceof FuelAuth);
 	});
 
-	it( 'should use already initiated fuel auth client', function() {
+	it('should use already initiated fuel auth client', function() {
 		var AuthClient, SoapClient;
 		var authOptions = {
 			clientId: 'testing'
 			, clientSecret: 'testing'
 		};
 		try {
-			AuthClient = new FuelAuth( authOptions );
+			AuthClient = new FuelAuth(authOptions);
 
 			AuthClient.test = true;
 
 			SoapClient = new FuelSoap({ auth: AuthClient });
 
-		} catch ( err ) {
-			expect( true ).to.be.false;
+		} catch (err) {
+			assert.ok(false);
 		}
 
-		expect( SoapClient.AuthClient.test).to.be.true;
+		assert.ok(SoapClient.AuthClient.test);
 	});
 
-	it( 'should take a custom soap endpoint', function() {
+	it('should take a custom soap endpoint', function() {
 		var options = {
 			auth: {
 				clientId: 'testing'
@@ -71,75 +71,75 @@ describe( 'General Tests', function() {
 		};
 
 		// testing default initialization
-		var SoapClient = new FuelSoap( options );
+		var SoapClient = new FuelSoap(options);
 
-		expect( SoapClient.requestOptions.uri ).to.equal( 'https://webservice.exacttarget.com/Service.asmx' );
+		assert.equal(SoapClient.requestOptions.uri, 'https://webservice.exacttarget.com/Service.asmx');
 
 		options.soapEndpoint = 'https://www.exacttarget.com';
 
 		// testing custom endpoint
-		SoapClient = new FuelSoap( options );
+		SoapClient = new FuelSoap(options);
 
-		expect( SoapClient.requestOptions.uri ).to.equal( 'https://www.exacttarget.com' );
+		assert.equal(SoapClient.requestOptions.uri, 'https://www.exacttarget.com');
 	});
 
-	it( 'should have soapRequest on prototype', function() {
-		expect( FuelSoap.prototype.soapRequest ).to.be.a( 'function' );
+	it('should have soapRequest on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.soapRequest, 'function');
 	});
 
-	it( 'should have create on prototype', function() {
-		expect( FuelSoap.prototype.create ).to.be.a( 'function' );
+	it('should have create on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.create, 'function');
 	});
 
-	it( 'should have retrieve on prototype', function() {
-		expect( FuelSoap.prototype.retrieve ).to.be.a( 'function' );
+	it('should have retrieve on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.retrieve, 'function');
 	});
 
-	it( 'should have update on prototype', function() {
-		expect( FuelSoap.prototype.update ).to.be.a( 'function' );
+	it('should have update on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.update, 'function');
 	});
 
-	it( 'should have delete on prototype', function() {
-		expect( FuelSoap.prototype.delete ).to.be.a( 'function' );
+	it('should have delete on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.delete, 'function');
 	});
 
-	it( 'should have describe on prototype', function() {
-		expect( FuelSoap.prototype.describe ).to.be.a( 'function' );
+	it('should have describe on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.describe, 'function');
 	});
 
-	it( 'should have execute on prototype', function() {
-		expect( FuelSoap.prototype.execute ).to.be.a( 'function' );
+	it('should have execute on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.execute, 'function');
 	});
 
-	it( 'should have perform on prototype', function() {
-		expect( FuelSoap.prototype.perform ).to.be.a( 'function' );
+	it('should have perform on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.perform, 'function');
 	});
 
-	it( 'should have configure on prototype', function() {
-		expect( FuelSoap.prototype.configure ).to.be.a( 'function' );
+	it('should have configure on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.configure, 'function');
 	});
 
-	it( 'should have schedule on prototype', function() {
-		expect( FuelSoap.prototype.schedule ).to.be.a( 'function' );
+	it('should have schedule on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.schedule, 'function');
 	});
 
-	it( 'should have versionInfo on prototype', function() {
-		expect( FuelSoap.prototype.versionInfo ).to.be.a( 'function' );
+	it('should have versionInfo on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.versionInfo, 'function');
 	});
 
-	it( 'should have extract on prototype', function() {
-		expect( FuelSoap.prototype.extract ).to.be.a( 'function' );
+	it('should have extract on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.extract, 'function');
 	});
 
-	it( 'should have getSystemStatus on prototype', function() {
-		expect( FuelSoap.prototype.getSystemStatus ).to.be.a( 'function' );
+	it('should have getSystemStatus on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype.getSystemStatus, 'function');
 	});
 
-	it( 'should have _buildEnvelope on prototype', function() {
-		expect( FuelSoap.prototype._buildEnvelope ).to.be.a( 'function' );
+	it('should have _buildEnvelope on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype._buildEnvelope, 'function');
 	});
 
-	it( 'should have _parseResponse on prototype', function() {
-		expect( FuelSoap.prototype._parseResponse ).to.be.a( 'function' );
+	it('should have _parseResponse on prototype', function() {
+		assert.equal(typeof FuelSoap.prototype._parseResponse, 'function');
 	});
 });
