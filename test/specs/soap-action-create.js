@@ -7,9 +7,12 @@
 
 'use strict';
 
-var assert = require('assert');
-var FuelSoap   = require('../../lib/fuel-soap');
-var sinon = require('sinon');
+var assert   = require('assert');
+var FuelSoap = require('../../lib/fuel-soap');
+var sinon    = require('sinon');
+
+// due to changes in API from v0.12 to v4
+var deepEqual = assert.deepStrictEqual || assert.deepEqual;
 
 describe('SOAP Action create', function() {
 	var initOptions;
@@ -84,7 +87,7 @@ describe('SOAP Action create', function() {
 		sampleClient.create('Email', sampleProps, {}, function(){});
 
 		// Assert
-		assert.deepStrictEqual(soapRequestSpy.args[0][0].req.CreateRequest.Objects, sampleProps);
+		deepEqual(soapRequestSpy.args[0][0].req.CreateRequest.Objects, sampleProps);
 	});
 
 	it('should assign passed options in the body object to CreateRequest.Options', function() {
@@ -96,7 +99,7 @@ describe('SOAP Action create', function() {
 		sampleClient.create('Email', { ID: 12345 }, sampleOpts, function(){});
 
 		// Assert
-		assert.deepStrictEqual(soapRequestSpy.args[0][0].req.CreateRequest.Options, sampleOpts);
+		deepEqual(soapRequestSpy.args[0][0].req.CreateRequest.Options, sampleOpts);
 
 	});
 

@@ -11,6 +11,9 @@ var proxyquire = require('proxyquire');
 var sinon      = require('sinon');
 var FuelSoap;
 
+// due to changes in API from v0.12 to v4
+var deepEqual = assert.deepStrictEqual || assert.deepEqual;
+
 describe('building a request envelope', function() {
 	var buildObjectSpy;
 
@@ -43,7 +46,7 @@ describe('building a request envelope', function() {
 		FuelSoap.prototype._buildEnvelope();
 
 		// Assert
-		assert.deepStrictEqual(builderSpy.args[0][0], expected);
+		deepEqual(builderSpy.args[0][0], expected);
 	});
 
 	it('should tell xml2js to build object', function() {
