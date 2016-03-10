@@ -18,12 +18,13 @@
   "unused": true,
   "globals": {
     "require": true,
-    "requirejs": true,
     "define": true,
     "describe": true,
     "it": true,
     "expect": true,
     "before": true,
-    "after": true
+    "after": true,
+    "beforeEach": true,
+    "afterEach": true
   }
 }
