@@ -25,38 +25,6 @@ describe('SOAP methods', function() {
 		server.close();
 	});
 
-	describe('SOAP Action Describe', function() {
-		it('should deliver a describe + response', function(done) {
-			// setting up spy and soap client
-			var soapRequestSpy = sinon.spy(FuelSoap.prototype, 'soapRequest');
-
-			// initialization options
-			var options = {
-				auth: {
-					clientId: 'testing'
-					, clientSecret: 'testing'
-				}
-				, soapEndpoint: localhost
-			};
-			var SoapClient = new FuelSoap(options);
-
-			// faking auth
-			SoapClient.AuthClient.accessToken = 'testForSoap';
-			SoapClient.AuthClient.expiration  = 111111111111;
-
-			SoapClient.describe('Email', function(err, data) {
-				// need to make sure we called soapRequest method
-				assert.ok(soapRequestSpy.calledOnce);
-
-				// making sure original request was describe
-				assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'describe');
-
-				FuelSoap.prototype.soapRequest.restore(); // restoring function
-				done();
-			});
-		});
-	});
-
 	describe('SOAP Action retrieve', function() {
 		it('should deliver a retrieve + response with option clientIDs', function(done) {
 			// setting up spy and soap client
