@@ -10,8 +10,22 @@
 var assert   = require('assert');
 var FuelSoap = require('../../lib/fuel-soap');
 var FuelAuth = require('fuel-auth');
+var proxyquire = require('proxyquire');
+var sinon = require('sinon');
+
 
 describe('General Tests', function() {
+	var requiredMethods;
+	var initOptions;
+
+	beforeEach(function() {
+		initOptions = {
+			auth: {
+				clientId: 'testing'
+				, clientSecret: 'testing'
+			}
+		};
+	})
 
 	it('should be a constructor', function() {
 		assert.equal(typeof FuelSoap, 'function');
@@ -19,12 +33,6 @@ describe('General Tests', function() {
 
 	it('should require auth options', function() {
 		var SoapClient;
-		var options = {
-			auth: {
-				clientId: 'testing'
-				, clientSecret: 'testing'
-			}
-		};
 
 		try {
 			SoapClient = new FuelSoap();
@@ -33,7 +41,7 @@ describe('General Tests', function() {
 		}
 
 		try {
-			SoapClient = new FuelSoap(options);
+			SoapClient = new FuelSoap(initOptions);
 		} catch (err) {
 			assert.ok(false);
 		}
@@ -43,13 +51,11 @@ describe('General Tests', function() {
 	});
 
 	it('should use already initiated fuel auth client', function() {
-		var AuthClient, SoapClient;
-		var authOptions = {
-			clientId: 'testing'
-			, clientSecret: 'testing'
-		};
+		var AuthClient;
+		var SoapClient;
+
 		try {
-			AuthClient = new FuelAuth(authOptions);
+			AuthClient = new FuelAuth(initOptions.auth);
 
 			AuthClient.test = true;
 
@@ -63,83 +69,65 @@ describe('General Tests', function() {
 	});
 
 	it('should take a custom soap endpoint', function() {
-		var options = {
-			auth: {
-				clientId: 'testing'
-				, clientSecret: 'testing'
-			}
-		};
-
 		// testing default initialization
-		var SoapClient = new FuelSoap(options);
+		var SoapClient = new FuelSoap(initOptions);
 
 		assert.equal(SoapClient.requestOptions.uri, 'https://webservice.exacttarget.com/Service.asmx');
 
-		options.soapEndpoint = 'https://www.exacttarget.com';
+		initOptions.soapEndpoint = 'https://www.exacttarget.com';
 
 		// testing custom endpoint
-		SoapClient = new FuelSoap(options);
+		SoapClient = new FuelSoap(initOptions);
 
 		assert.equal(SoapClient.requestOptions.uri, 'https://www.exacttarget.com');
 	});
 
-	it('should have soapRequest on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.soapRequest, 'function');
+	it('should be able to add a custom header via reqOptions', function() {
+		// Arrange
+		var expected = { testing: 'MyHeaderHere' };
+		var requestOptions = { headers: expected };
+		var requestSpy = sinon.spy();
+		var FuelSoap = proxyquire('../../lib/fuel-soap', {
+			request: requestSpy
+		});
+		var client = new FuelSoap(initOptions);
+		sinon.stub(client.AuthClient, 'getAccessToken', function(opts, cb) {
+			cb(null, { accessToken: 123456 });
+		});
+
+		// Act
+		client.soapRequest({
+			action: 'Retrieve',
+			req: {},
+			key: 'RetrieveResponseMsg',
+			retry: true,
+			reqOptions: requestOptions
+		}, sinon.stub());
+
+		// Assert
+		assert.equal(requestSpy.args[0][0].headers.testing, expected.testing);
 	});
 
-	it('should have create on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.create, 'function');
-	});
+	// Some methods are not here as they are tested elsewhere and their missing
+	// would fail other tests. Eventually this will not be needed as methods are
+	// full tested elsewhere
+	requiredMethods = [
+		'_parseResponse'
+		, 'configure'
+		, 'delete'
+		, 'execute'
+		, 'extract'
+		, 'perform'
+		, 'retrieve'
+		, 'schedule'
+		, 'soapRequest'
+		, 'update'
+		, 'versionInfo'
+	];
 
-	it('should have retrieve on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.retrieve, 'function');
-	});
-
-	it('should have update on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.update, 'function');
-	});
-
-	it('should have delete on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.delete, 'function');
-	});
-
-	it('should have describe on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.describe, 'function');
-	});
-
-	it('should have execute on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.execute, 'function');
-	});
-
-	it('should have perform on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.perform, 'function');
-	});
-
-	it('should have configure on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.configure, 'function');
-	});
-
-	it('should have schedule on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.schedule, 'function');
-	});
-
-	it('should have versionInfo on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.versionInfo, 'function');
-	});
-
-	it('should have extract on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.extract, 'function');
-	});
-
-	it('should have getSystemStatus on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype.getSystemStatus, 'function');
-	});
-
-	it('should have _buildEnvelope on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype._buildEnvelope, 'function');
-	});
-
-	it('should have _parseResponse on prototype', function() {
-		assert.equal(typeof FuelSoap.prototype._parseResponse, 'function');
+	requiredMethods.forEach(function(method) {
+		it('should have '+ method +' on prototype', function() {
+			assert.equal(typeof FuelSoap.prototype[method], 'function');
+		});
 	});
 });
