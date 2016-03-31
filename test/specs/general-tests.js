@@ -25,7 +25,7 @@ describe('General Tests', function() {
 				, clientSecret: 'testing'
 			}
 		};
-	})
+	});
 
 	it('should be a constructor', function() {
 		assert.equal(typeof FuelSoap, 'function');
