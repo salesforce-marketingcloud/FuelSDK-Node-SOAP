@@ -25,38 +25,6 @@ describe('SOAP methods', function() {
 		server.close();
 	});
 
-	describe('SOAP Action Describe', function() {
-		it('should deliver a describe + response', function(done) {
-			// setting up spy and soap client
-			var soapRequestSpy = sinon.spy(FuelSoap.prototype, 'soapRequest');
-
-			// initialization options
-			var options = {
-				auth: {
-					clientId: 'testing'
-					, clientSecret: 'testing'
-				}
-				, soapEndpoint: localhost
-			};
-			var SoapClient = new FuelSoap(options);
-
-			// faking auth
-			SoapClient.AuthClient.accessToken = 'testForSoap';
-			SoapClient.AuthClient.expiration  = 111111111111;
-
-			SoapClient.describe('Email', function(err, data) {
-				// need to make sure we called soapRequest method
-				assert.ok(soapRequestSpy.calledOnce);
-
-				// making sure original request was describe
-				assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'describe');
-
-				FuelSoap.prototype.soapRequest.restore(); // restoring function
-				done();
-			});
-		});
-	});
-
 	describe('SOAP Action retrieve', function() {
 		it('should deliver a retrieve + response with option clientIDs', function(done) {
 			// setting up spy and soap client
@@ -228,90 +196,6 @@ describe('SOAP methods', function() {
 
 			// Act
 			client.retrieve('Email', ['ID'], soapRequestOptions, function(){});
-		});
-	});
-
-	describe('SOAP Action create', function() {
-		it('should deliver a create + response', function(done) {
-			// setting up spy and soap client
-			var soapRequestSpy = sinon.spy(FuelSoap.prototype, 'soapRequest');
-
-			// initialization options
-			var options = {
-				auth: {
-					clientId: 'testing'
-					, clientSecret: 'testing'
-				}
-				, soapEndpoint: localhost
-			};
-			var SoapClient = new FuelSoap(options);
-
-			// faking auth
-			SoapClient.AuthClient.accessToken = 'testForSoap';
-			SoapClient.AuthClient.expiration  = 111111111111;
-
-			SoapClient.create(
-				'Email',
-				{
-					Name: 'SOAP Test Email',
-					Subject: 'SOAP Test Email'
-				},
-				function(err, data) {
-					// need to make sure we called soapRequest method
-					assert.ok(soapRequestSpy.calledOnce);
-
-					// making sure original request was create
-					assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'create');
-
-					FuelSoap.prototype.soapRequest.restore(); // restoring function
-					done();
-				}
-			);
-		});
-
-		it('should add QueryAllAccounts to body -> CreateRequest -> Options', function(done) {
-			// Arrange
-			var initOptions = {
-				auth: {
-					clientId: 'testing'
-					, clientSecret: 'testing'
-				}
-				, soapEndpoint: localhost
-			};
-			var client = new FuelSoap(initOptions);
-			var soapRequestOptions = { queryAllAccounts: true };
-
-			sinon.stub(client, "soapRequest", function(options) {
-				// Assert
-				assert.ok(options.req.CreateRequest.Options.QueryAllAccounts);
-				client.soapRequest.restore();
-				done();
-			});
-
-			// Act
-			client.create('Email', { ID: 12345 }, soapRequestOptions, function(){});
-		});
-
-		it('should not add QueryAllAccounts to body -> CreateRequest -> Options', function(done) {
-			// Arrange
-			var initOptions = {
-				auth: {
-					clientId: 'testing'
-					, clientSecret: 'testing'
-				}
-				, soapEndpoint: localhost
-			};
-			var client = new FuelSoap(initOptions);
-
-			sinon.stub(client, "soapRequest", function(options) {
-				// Assert
-				assert.equal(options.req.CreateRequest.Options, null);
-				client.soapRequest.restore();
-				done();
-			});
-
-			// Act
-			client.create('Email', { ID: 12345 }, function(){});
 		});
 	});
 
