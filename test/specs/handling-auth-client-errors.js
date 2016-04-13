@@ -43,7 +43,8 @@ describe('handling errors from auth client in soapRequest', function() {
 		soapClient.soapRequest({}, function() {});
 
 		// Assert
-		assert.ok(deliverResponseSpy.calledOnce);
+		assert.ok(deliverResponseSpy.args[0][0], 'error');
+		assert.ok(deliverResponseSpy.args[0][3], 'FuelAuth');
 	});
 
 	it('should tell helpers to deliver error response when auth client returns body without an access token', function() {
@@ -57,6 +58,6 @@ describe('handling errors from auth client in soapRequest', function() {
 		soapClient.soapRequest({}, function() {});
 
 		// Assert
-		assert.ok(deliverResponseSpy.calledOnce);
+		assert.ok(deliverResponseSpy.args[0][1].message, 'No access token');
 	});
 });
