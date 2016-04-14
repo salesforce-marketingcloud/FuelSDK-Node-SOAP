@@ -11,7 +11,7 @@ var assert   = require('assert');
 var FuelSoap = require('../../lib/fuel-soap');
 var sinon    = require('sinon');
 
-describe('SOAP Action describe', function() {
+describe('SOAP Action - describe', function() {
 	var soapRequestSpy;
 	var simpleVerifyTestCases = [
 		{ property: 'action', expected: 'Describe' }
