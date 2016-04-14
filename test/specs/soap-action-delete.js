@@ -14,16 +14,18 @@ var sinon      = require('sinon');
 describe('SOAP Action - delete', function() {
 	var FuelSoap;
 	var soapRequestSpy;
+	var parsedOptions = { parsedOptions: true };
 	var simpleVerifyTestCases = [
 		{ property: 'action', expected: 'Delete' }
 		, { property: 'key', expected: 'DeleteResponse' }
 		, { property: 'retry', expected: true }
+		, { property: 'reqOptions', expected: parsedOptions }
 	];
 
 	beforeEach(function() {
 		FuelSoap = proxyquire('../../lib/fuel-soap', {
-			helpers: {
-				parseReqOptions: function() {}
+			'./helpers': {
+				parseReqOptions: function() { return parsedOptions; }
 			}
 		});
 		soapRequestSpy = sinon.stub(FuelSoap.prototype, 'soapRequest');
