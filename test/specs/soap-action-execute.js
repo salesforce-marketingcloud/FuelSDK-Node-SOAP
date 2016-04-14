@@ -12,7 +12,7 @@ var FuelSoap = require('../../lib/fuel-soap');
 var sinon    = require('sinon');
 
 describe('SOAP Action - execute', function() {
-	var soapRequstSpy;
+	var soapRequestSpy;
 	var simpleVerifyTestCases = [
 		{ property: 'action', expected: 'Execute' }
 		, { property: 'key', expected: 'ExecuteResponseMsg' }
@@ -20,7 +20,7 @@ describe('SOAP Action - execute', function() {
 	];
 
 	beforeEach(function() {
-		soapRequstSpy = sinon.stub(FuelSoap.prototype, 'soapRequest');
+		soapRequestSpy = sinon.stub(FuelSoap.prototype, 'soapRequest');
 	});
 
 	afterEach(function() {
@@ -33,7 +33,7 @@ describe('SOAP Action - execute', function() {
 			FuelSoap.prototype.execute('Test', { data: true }, function() {});
 
 			// Assert
-			assert.equal(soapRequstSpy.args[0][0][testCase.property], testCase.expected);
+			assert.equal(soapRequestSpy.args[0][0][testCase.property], testCase.expected);
 		});
 	});
 
@@ -44,8 +44,8 @@ describe('SOAP Action - execute', function() {
 		FuelSoap.prototype.execute(sampleType, sampleProps, function() {});
 
 		// Assert
-		assert.equal(soapRequstSpy.args[0][0].req.ExecuteRequestMsg.Requests.Name, sampleType);
-		assert.equal(soapRequstSpy.args[0][0].req.ExecuteRequestMsg.Requests.Parameters, sampleProps);
+		assert.equal(soapRequestSpy.args[0][0].req.ExecuteRequestMsg.Requests.Name, sampleType);
+		assert.equal(soapRequestSpy.args[0][0].req.ExecuteRequestMsg.Requests.Parameters, sampleProps);
 	});
 
 	it('should pass callback to soapRequest', function() {
@@ -56,6 +56,6 @@ describe('SOAP Action - execute', function() {
 		FuelSoap.prototype.execute('Test', { data: true }, sampleCallback);
 
 		// Assert
-		assert.ok(soapRequstSpy.calledWith(sinon.match.object, sampleCallback));
+		assert.ok(soapRequestSpy.calledWith(sinon.match.object, sampleCallback));
 	});
 });
