@@ -6,81 +6,136 @@
  */
 
 'use strict';
-
 var assert     = require('assert');
-var mockServer = require('../mock-server');
+var proxyquire = require('proxyquire');
+var sinon      = require('sinon');
 var FuelSoap   = require('../../lib/fuel-soap');
-var port       = 4550;
-var localhost  = 'http://127.0.0.1:' + port + '/sample/soap/endpoint';
 
-describe('soapRequest method', function() {
-	var server, SoapClient;
+describe('soapRequest (function that actually makes API request)', function() {
+	describe('requiring proper args', function() {
+		it('should throw if no callback passed', function() {
+			// Arrange
+			var error = null;
 
-	before(function() {
-		// setting up soap client for all tests to use
-		var options = {
-			auth: {
-				clientId: 'testing'
-				, clientSecret: 'testing'
+			// Act
+			try {
+				FuelSoap.prototype.soapRequest({});
+			} catch(err) {
+				error = err;
 			}
-			, soapEndpoint: localhost
-		};
 
-		SoapClient = new FuelSoap(options);
+			// Assert
+			assert.ok(error);
+		});
 
-		// faking auth
-		SoapClient.AuthClient.accessToken = 'testForSoap';
-		SoapClient.AuthClient.expiration = 111111111111;
+		it('should throw if no options passed', function() {
+			// Arrange
+			var error = null;
 
-		// setting up server
-		server = mockServer(port);
+			// Act
+			try {
+				FuelSoap.prototype.soapRequest(null, function() {})
+			} catch(err) {
+				error = err;
+			}
+
+			// Assert
+			assert.ok(error);
+		});
 	});
 
-	after(function() {
-		server.close();
-	});
+	describe('correct options passed to request module', function() {
+		var MockedFuelSoap;
+		var sampleClient;
+		var requestModuleSpy;
 
-	it('should throw an error when no options are passed', function() {
-		try {
-			SoapClient.soapRequest(null, function() {});
-		} catch (err) {
-			assert.equal(err.name, 'TypeError');
-			assert.equal(err.message, 'options argument is required');
-		}
-	});
+		beforeEach(function() {
+			requestModuleSpy = sinon.spy();
 
-	it('should throw an error if no callback is present', function() {
-		try {
-			SoapClient.soapRequest(null, null);
-		} catch(err) {
-			assert.equal(err.name, 'TypeError');
-			assert.equal(err.message, 'callback argument is required');
-		}
-	});
+			MockedFuelSoap = proxyquire('../../lib/fuel-soap', {
+				request: requestModuleSpy
+			});
 
-	it('should execute a describe call', function() {
-		var body = {
-			DefinitionRequestMsg: {
-				'$': {
-					'xmlns': 'http://exacttarget.com/wsdl/partnerAPI'
-				},
-				'DescribeRequests': {
-					'ObjectDefinitionRequest': {
-						'ObjectType': 'Email' // Come back to
-					}
+			sampleClient = new MockedFuelSoap({ auth: { clientId: 'testing', clientSecret: 'testing' }});
+
+			sinon.stub(sampleClient.AuthClient, 'getAccessToken', function(opts, cb) {
+				cb(null, { accessToken: 12345 });
+			});
+		});
+
+		it('should call request module with proper SOAPAction header', function() {
+			// Arrange
+			var sampleAction = '<sample action>';
+
+			// Act
+			sampleClient.soapRequest({ action: sampleAction }, sinon.stub());
+
+			// Assert
+			assert.equal(requestModuleSpy.args[0][0].headers.SOAPAction, sampleAction);
+		});
+
+		it('should be able to add custom headers', function() {
+			// Arrange
+			var customHeaders = {
+				test: '<sample header>'
+			};
+
+			// Act
+			sampleClient.soapRequest({
+				reqOptions: {
+					headers: customHeaders
 				}
-			}
-		};
+			}, sinon.stub());
 
-		SoapClient.soapRequest({
-			action: 'Describe',
-			req: body,
-			key: 'DefinitionResponseMsg',
-			retry: false
-		}, function(err, data) {
-			assert.equal(err, null);
-			assert.equal(data.res.req.method, 'POST');
-			assert.equal(data.res.req._headers.soapaction.toLowerCase(), 'describe');
+			// Assert
+			assert.equal(requestModuleSpy.args[0][0].headers.test, customHeaders.test);
+		});
+
+		it('should assign request body the result of _buildEnvelope', function() {
+			// Arrange
+			var buildEnvelopeResult = { body: true, data: true };
+
+			sinon.stub(sampleClient, '_buildEnvelope', function() {
+				return buildEnvelopeResult;
+			});
+
+			// Act
+			sampleClient.soapRequest({}, sinon.stub());
+
+			// Assert
+			assert(requestModuleSpy.args[0][0].body, buildEnvelopeResult);
+		});
+
+		it('should tell helpers to deliver a response when no errors are encountered', function() {
+			var deliverResponseSpy  = sinon.spy();
+			var parseResponseData   = { parseResData: true };
+			var requestResponseData = { responseData: true };
+			var LocalMockedFuelSoap = proxyquire('../../lib/fuel-soap', {
+				request: function(options, callback) {
+					callback(null, requestResponseData, { body: true });
+				},
+				'./helpers': {
+					deliverResponse: deliverResponseSpy
+				}
+			});
+
+			var localSampleClient = new LocalMockedFuelSoap({ auth: { clientId: 'testing', clientSecret: 'testing' }});
+			localSampleClient._buildEnvelope = sinon.stub();
+			sinon.stub(localSampleClient.AuthClient, 'getAccessToken', function(options, cb) {
+				cb(null, { accessToken: 12345 });
+			});
+			sinon.stub(localSampleClient, '_parseResponse', function(key, body, cb) {
+				cb(null, parseResponseData);
+			});
+
+			// Act
+			localSampleClient.soapRequest({}, sinon.stub());
+
+			// Assert
+			assert.equal(deliverResponseSpy.args[0][0], 'response');
+			assert.equal(deliverResponseSpy.args[0][1].body, parseResponseData);
+			assert.equal(deliverResponseSpy.args[0][1].res, requestResponseData);
+			assert.ok(deliverResponseSpy.args[0][2], sinon.match.function);
 		});
 	});
 });
