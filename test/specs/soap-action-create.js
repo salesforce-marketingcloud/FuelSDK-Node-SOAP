@@ -14,7 +14,7 @@ var sinon    = require('sinon');
 // due to changes in API from v0.12 to v4
 var deepEqual = assert.deepStrictEqual || assert.deepEqual;
 
-describe('SOAP Action create', function() {
+describe('SOAP Action - create', function() {
 	var initOptions;
 	var sampleClient;
 

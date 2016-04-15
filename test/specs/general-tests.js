@@ -15,7 +15,7 @@ var sinon = require('sinon');
 
 
 describe('General Tests', function() {
-	var requiredMethods;
+	var notImplementedMethods;
 	var initOptions;
 
 	beforeEach(function() {
@@ -108,26 +108,26 @@ describe('General Tests', function() {
 		assert.equal(requestSpy.args[0][0].headers.testing, expected.testing);
 	});
 
-	// Some methods are not here as they are tested elsewhere and their missing
-	// would fail other tests. Eventually this will not be needed as methods are
-	// full tested elsewhere
-	requiredMethods = [
-		'_parseResponse'
-		, 'configure'
-		, 'delete'
-		, 'execute'
+	// these methods haven't been implemented, but are in the code. I don't want
+	// to remove them as it would be a "breaking" change (debateable). So just call
+	// them to make sure they're there. Once methods are implemented these will
+	// need to be removed
+	notImplementedMethods = [
+		'configure'
 		, 'extract'
+		, 'getSystemStatus'
 		, 'perform'
-		, 'retrieve'
+		, 'query'
 		, 'schedule'
-		, 'soapRequest'
-		, 'update'
 		, 'versionInfo'
 	];
 
-	requiredMethods.forEach(function(method) {
+	notImplementedMethods.forEach(function(method) {
 		it('should have '+ method +' on prototype', function() {
-			assert.equal(typeof FuelSoap.prototype[method], 'function');
+			// no good standard way in assert to verify if something doesn't
+			// throw. this will have to do. if methods removed, test will fail with
+			// error
+			assert.ok(!FuelSoap.prototype[method].call());
 		});
 	});
 });
