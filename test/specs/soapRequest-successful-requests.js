@@ -34,7 +34,7 @@ describe('soapRequest (function that actually makes API request)', function() {
 
 			// Act
 			try {
-				FuelSoap.prototype.soapRequest(null, function() {})
+				FuelSoap.prototype.soapRequest(null, function() {});
 			} catch(err) {
 				error = err;
 			}
