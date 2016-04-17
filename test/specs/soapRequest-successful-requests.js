@@ -106,20 +106,19 @@ describe('soapRequest (function that actually makes API request)', function() {
 			assert(requestModuleSpy.args[0][0].body, buildEnvelopeResult);
 		});
 
-		it('should tell helpers to deliver a response when no errors are encountered', function() {
-			var deliverResponseSpy  = sinon.spy();
+		it('should deliver a response when no errors are encountered', function() {
+			// Arrange
+			var callbackSpy         = sinon.spy();
 			var parseResponseData   = { parseResData: true };
 			var requestResponseData = { responseData: true };
 			var LocalMockedFuelSoap = proxyquire('../../lib/fuel-soap', {
 				request: function(options, callback) {
 					callback(null, requestResponseData, { body: true });
-				},
-				'./helpers': {
-					deliverResponse: deliverResponseSpy
 				}
 			});
 
 			var localSampleClient = new LocalMockedFuelSoap({ auth: { clientId: 'testing', clientSecret: 'testing' }});
+
 			localSampleClient._buildEnvelope = sinon.stub();
 			sinon.stub(localSampleClient.AuthClient, 'getAccessToken', function(options, cb) {
 				cb(null, { accessToken: 12345 });
@@ -129,13 +128,10 @@ describe('soapRequest (function that actually makes API request)', function() {
 			});
 
 			// Act
-			localSampleClient.soapRequest({}, sinon.stub());
+			localSampleClient.soapRequest({}, callbackSpy);
 
 			// Assert
-			assert.equal(deliverResponseSpy.args[0][0], 'response');
-			assert.equal(deliverResponseSpy.args[0][1].body, parseResponseData);
-			assert.equal(deliverResponseSpy.args[0][1].res, requestResponseData);
-			assert.ok(deliverResponseSpy.args[0][2], sinon.match.function);
+			assert.ok(callbackSpy.calledWith(null, { body: parseResponseData, res: requestResponseData }));
 		});
 	});
 });
