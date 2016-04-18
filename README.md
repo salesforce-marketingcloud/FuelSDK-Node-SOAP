@@ -9,47 +9,18 @@ This library allows users access to the Salesforce Marketing Cloud (formerly Exa
 npm install fuel-soap --save
 ```
 
-## Initialization
+## Docs & Examples
 
-**new FuelSoap( options )** - Initialization
+Our docs site is available [here](http://salesforce-marketingcloud.github.io/FuelSDK-Node-SOAP/)
 
-* `options.auth`
-    * Required: yes
-    * Type: `Object` or [FuelAuth Instance][1]
-    * properties need to match [FuelAuth][1]
-* `options.soapEndpoint`
-    * Required: no
-    * Type: `String`
-    * Default: https://webservice.exacttarget.com/Service.asmx
-
-## API
-
-* **describe( type, callback )**
-    * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
-    * `callback` - executed after task is completed. **required**
-* **retrieve( type, props, options, callback )**
-    * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
-    * `props` - object properties to be returned **required**
-    * `options` - options object
-      * `options.queryAllAccounts` with a rvalue of `true` will include 'QueryAllAccounts' in RetrieveRequest object
-      * `options.filter` - filter object
-    	   * `filter.leftOperand` - property or filter object
-    	   * `filter.operator` - [Simple](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/simpleoperators/) or [Logical](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/logicaloperators/) operator
-    	   * `filter.rightOperand` - value or filter object
-    * `callback` - executed after task is completed. **required**
-* **create | update | delete( type, props, options, callback )**
-    * `type` - object type. [see object types](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/) **required**
-    * `props` - object properties and values. **required**
-    * `options` - options object. [see method options](http://help.exacttarget.com/en/technical_library/web_service_guide/objects/options/)
-      * `options.queryAllAccounts` with a value of `true` will include 'QueryAllAccounts' in Options object
-    * `callback` - executed after task is completed. **required**
-
-## Examples
+Common examples:
 
 1. [Setting up the client][3]
 2. [Simple Retrieve][4]
 3. [Business Unit Retrieve][5]
 4. [Custom Headers][6]
+
+More in-depth examples can be found [here](https://github.com/salesforce-marketingcloud/FuelSDK-Node)
 
 ## Contributors
 
