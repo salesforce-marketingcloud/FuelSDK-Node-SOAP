@@ -4,7 +4,7 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": ["lib", "package.json", "README.md"],
+        "include": ["lib"],
         "includePattern": ".js$",
         "excludePattern": "(node_modules/|docs)"
     },
@@ -16,7 +16,7 @@
         "monospaceLinks": true
     },
     "opts": {
-        "destination": "./_site/",
+        "destination": "./",
         "encoding": "utf8",
         "private": true,
         "recurse": true
