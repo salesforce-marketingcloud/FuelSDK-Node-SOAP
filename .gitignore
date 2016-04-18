@@ -3,4 +3,3 @@ node_modules/
 .idea
 .*.swp
 coverage/
-docs/
