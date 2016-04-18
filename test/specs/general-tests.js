@@ -108,6 +108,18 @@ describe('General Tests', function() {
 		assert.equal(requestSpy.args[0][0].headers.testing, expected.testing);
 	});
 
+	it('should add header from options to global headers (this.defaultHeaders)', function() {
+		// Arrange
+		var client;
+		initOptions.headers = { newHeader: true };
+
+		// Act
+		client = new FuelSoap(initOptions);
+
+		// Assert
+		assert.ok(client.defaultHeaders.newHeader);
+	});
+
 	// these methods haven't been implemented, but are in the code. I don't want
 	// to remove them as it would be a "breaking" change (debateable). So just call
 	// them to make sure they're there. Once methods are implemented these will

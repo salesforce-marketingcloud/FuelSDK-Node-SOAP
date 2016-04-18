@@ -6,58 +6,50 @@
  */
 
 'use strict';
-var assert     = require('assert');
-var proxyquire = require('proxyquire');
-var sinon      = require('sinon');
-var FuelSoap;
+var assert   = require('assert');
+var FuelSoap = require('../../lib/fuel-soap');
+var sinon    = require('sinon');
 
 describe('handling errors from auth client in soapRequest', function() {
-	var deliverResponseSpy;
 	var initOptions;
 
 	beforeEach(function() {
-		deliverResponseSpy = sinon.spy();
-
 		initOptions = {
 			auth: {
 				clientId: 'testing'
 				, clientSecret: 'testing'
 			}
 		};
-
-		FuelSoap = proxyquire('../../lib/fuel-soap', {
-			'./helpers': {
-				deliverResponse: deliverResponseSpy
-			}
-		});
 	});
 
-	it('should tell helpers to deliver error response when auth client returns error on access token fetch', function() {
+	it('should deliver error response when auth client returns error on access token fetch', function() {
 		// Arrange
+		var callbackSpy = sinon.spy();
+		var sampleError = new Error('whatever error here');
 		var soapClient = new FuelSoap(initOptions);
 		sinon.stub(soapClient.AuthClient, 'getAccessToken', function(options, cb) {
-			cb({ err: true }, null);
+			cb(sampleError, null);
 		});
 
 		// Act
-		soapClient.soapRequest({}, function() {});
+		soapClient.soapRequest({}, callbackSpy);
 
 		// Assert
-		assert.ok(deliverResponseSpy.args[0][0], 'error');
-		assert.ok(deliverResponseSpy.args[0][3], 'FuelAuth');
+		assert.ok(callbackSpy.calledWith(sampleError, null));
 	});
 
-	it('should tell helpers to deliver error response when auth client returns body without an access token', function() {
+	it('should deliver error response when auth client returns body without an access token', function() {
 		// Arrange
+		var callbackSpy = sinon.spy();
 		var soapClient = new FuelSoap(initOptions);
 		sinon.stub(soapClient.AuthClient, 'getAccessToken', function(options, cb) {
 			cb(null, {});
 		});
 
 		// Act
-		soapClient.soapRequest({}, function() {});
+		soapClient.soapRequest({}, callbackSpy);
 
 		// Assert
-		assert.ok(deliverResponseSpy.args[0][1].message, 'No access token');
+		assert.ok(callbackSpy.args[0][0].message, 'No access token');
 	});
 });
