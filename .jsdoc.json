@@ -4,7 +4,7 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": ["lib"],
+        "include": ["lib", "Readme.md"],
         "includePattern": ".js$",
         "excludePattern": "(node_modules/|docs)"
     },
@@ -19,6 +19,7 @@
         "destination": "./",
         "encoding": "utf8",
         "private": true,
-        "recurse": true
+        "recurse": true,
+        "template": "node_modules/docdash"
     }
 }
