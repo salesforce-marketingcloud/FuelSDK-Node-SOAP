@@ -1,4 +1,4 @@
-Fuel SOAP Client (for Node.js) [![Build Status](https://travis-ci.org/salesforce-marketingcloud/FuelSDK-Node-SOAP.svg?branch=master)](https://travis-ci.org/salesforce-marketingcloud/FuelSDK-Node-SOAP)
+Fuel SOAP Client (for Node.js) [![Build Status](https://travis-ci.org/salesforce-marketingcloud/FuelSDK-Node-SOAP.svg?branch=master)](https://travis-ci.org/salesforce-marketingcloud/FuelSDK-Node-SOAP)  [![Known Vulnerabilities](https://snyk.io/test/github/salesforce-marketingcloud/FuelSDK-Node-SOAP/badge.svg)](https://snyk.io/test/github/salesforce-marketingcloud/FuelSDK-Node-SOAP)
 =============
 
 ***This repo used to be located at https://github.com/exacttarget/Fuel-Node-SOAP***
