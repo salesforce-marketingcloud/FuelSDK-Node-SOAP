@@ -23,7 +23,7 @@ Common examples:
 6. [Upsert Subscriber Record][8]
 7. [Retrieve Subscriber Attributes][9]
 8. [Retrieve Folder with Given Parent][10]
-9. [Complex filter retrieving a folder with a given parent and name.][11]
+9. [Complex filter retrieving a folder with a given parent and name][11]
 10. [Create Folder][12]
 11. [Create Email][13]
 12. [Retrieve Data Extension Object ID given a Customer Key][14]
