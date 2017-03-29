@@ -33,15 +33,6 @@ Common examples:
 
 More in-depth examples can be found [here](https://github.com/salesforce-marketingcloud/FuelSDK-Node)
 
-## Contributors
-
-* Aydrian J. Howard - [twitter](https://twitter.com/aydrianh), [github](https://github.com/aydrian)
-* Alex Vernacchia - [twitter](https://twitter.com/vernacchia), [github](https://github.com/vernak2539)
-* Kelly Andrews - [twitter](https://twitter.com/kellyjandrews), [github](https://github.com/kellyjandrews)
-* Jimmy Burgess - [github](https://github.com/jimmyburgess91)
-* Nathan LaFreniere - [github](https://github.com/nlf)
-* Drew Simmons - [github](https://github.com/timsim00)
-
 ## Contributing
 
 Please checkout our [`.jshintrc`][2] file and follow the linting rules when contributing. In addition, this project uses **tabs** not spaces.
