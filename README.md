@@ -19,6 +19,17 @@ Common examples:
 2. [Simple Retrieve][4]
 3. [Business Unit Retrieve][5]
 4. [Custom Headers][6]
+5. [Upsert row to a Data Extension][7]
+6. [Upsert Subscriber Record][8]
+7. [Retrieve Subscriber Attributes][9]
+8. [Retrieve Folder with Given Parent][10]
+9. [Complex filter retrieving a folder with a given parent and name][11]
+10. [Create Folder][12]
+11. [Create Email][13]
+12. [Retrieve Data Extension Object ID given a Customer Key][14]
+13. [Create Email Send Definition][15]
+14. [Perform/Send an Email Send Definition][16]
+
 
 More in-depth examples can be found [here](https://github.com/salesforce-marketingcloud/FuelSDK-Node)
 
@@ -49,3 +60,13 @@ Please checkout our [`.jshintrc`][2] file and follow the linting rules when cont
 [4]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-2_simple-retrieve-js
 [5]: https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-3_business-unit-retrieve-js
 [6]: https://gist.github.com/vernak2539/a1b5c6e36f6c7f1fe63b
+[7]: https://gist.github.com/angrycider/02e858fd013144e1bab3b422f7dad72e
+[8]: https://gist.github.com/angrycider/f8377566cb8846b1842da15786b7fd59
+[9]: https://gist.github.com/angrycider/ce1d4e3a95dbd67c4c83176c04d08036
+[10]: https://gist.github.com/angrycider/cef64f6d5081bad90625747bb622386e
+[11]: https://gist.github.com/angrycider/0bb7f244784666d6d0713264d7e60db4
+[12]: https://gist.github.com/angrycider/b5369270b48eea2b6d225aa75797c779
+[13]: https://gist.github.com/angrycider/ee39a7a87454201ea469108104b6f0e0
+[14]: https://gist.github.com/angrycider/47a2727e274ef87632c115b333aeb473
+[15]: https://gist.github.com/angrycider/62ffa5285d7399b2fbaa8d63989c64c0
+[16]: https://gist.github.com/angrycider/ca45209fcad89ae3f71e7119680f24ef

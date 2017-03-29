@@ -128,7 +128,6 @@ describe('General Tests', function() {
 		'configure'
 		, 'extract'
 		, 'getSystemStatus'
-		, 'perform'
 		, 'query'
 		, 'schedule'
 		, 'versionInfo'
