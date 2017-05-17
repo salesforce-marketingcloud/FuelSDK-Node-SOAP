@@ -27,7 +27,7 @@ describe('handling errors from auth client in soapRequest', function() {
 		var callbackSpy = sinon.spy();
 		var sampleError = new Error('whatever error here');
 		var soapClient = new FuelSoap(initOptions);
-		sinon.stub(soapClient.AuthClient, 'getAccessToken', function(options, cb) {
+		sinon.stub(soapClient.AuthClient, 'getAccessToken').callsFake(function(options, cb) {
 			cb(sampleError, null);
 		});
 
@@ -42,7 +42,7 @@ describe('handling errors from auth client in soapRequest', function() {
 		// Arrange
 		var callbackSpy = sinon.spy();
 		var soapClient = new FuelSoap(initOptions);
-		sinon.stub(soapClient.AuthClient, 'getAccessToken', function(options, cb) {
+		sinon.stub(soapClient.AuthClient, 'getAccessToken').callsFake(function(options, cb) {
 			cb(null, {});
 		});
 

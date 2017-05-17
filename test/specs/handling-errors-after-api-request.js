@@ -31,7 +31,7 @@ describe('handling errors after request has been made to API', function() {
 		});
 
 		soapClient._buildEnvelope = sinon.stub();
-		sinon.stub(soapClient.AuthClient, 'getAccessToken', function(options, cb) {
+		sinon.stub(soapClient.AuthClient, 'getAccessToken').callsFake(function(options, cb) {
 			cb(null, { accessToken: 12345 });
 		});
 
@@ -69,10 +69,10 @@ describe('handling errors after request has been made to API', function() {
 			});
 
 			soapClient._buildEnvelope = sinon.stub();
-			sinon.stub(soapClient.AuthClient, 'getAccessToken', function(options, cb) {
+			sinon.stub(soapClient.AuthClient, 'getAccessToken').callsFake(function(options, cb) {
 				cb(null, { accessToken: 12345 });
 			});
-			sinon.stub(soapClient, '_parseResponse', function(key, body, cb) {
+			sinon.stub(soapClient, '_parseResponse').callsFake(function(key, body, cb) {
 				cb(parseResponseError, null);
 			});
 		});

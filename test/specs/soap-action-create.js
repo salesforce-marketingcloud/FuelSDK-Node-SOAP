@@ -39,7 +39,7 @@ describe('SOAP Action - create', function() {
 		var expected = 'param 3';
 
 		// Assert
-		sinon.stub(sampleClient, "soapRequest", function(options, callback) {
+		sinon.stub(sampleClient, "soapRequest").callsFake(function(options, callback) {
 			assert.equal(callback(), expected);
 			done();
 		});
@@ -55,7 +55,7 @@ describe('SOAP Action - create', function() {
 		var expected = 'param 4';
 
 		// Assert
-		sinon.stub(sampleClient, "soapRequest", function(options, callback) {
+		sinon.stub(sampleClient, "soapRequest").callsFake(function(options, callback) {
 			assert.equal(callback(), expected);
 			done();
 		});
