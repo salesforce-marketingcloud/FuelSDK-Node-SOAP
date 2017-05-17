@@ -90,7 +90,7 @@ describe('SOAP Action - retrieve', function() {
 			// it's not written this way, but it will be
 
 			beforeEach(function() {
-				sinon.stub(FuelSoap.prototype, '_parseFilter', function(filter) { return filter; });
+				sinon.stub(FuelSoap.prototype, '_parseFilter').callsFake(function(filter) { return filter; });
 			});
 
 			afterEach(function() {
@@ -170,7 +170,7 @@ describe('SOAP Action - retrieve', function() {
 					clientIDs: [1,2,3,4],
 					filter: { filter: 'yes i am' }
 				};
-				sinon.stub(FuelSoap.prototype, '_parseFilter', function(filter) { return filter; });
+				sinon.stub(FuelSoap.prototype, '_parseFilter').callsFake(function(filter) { return filter; });
 			});
 
 			afterEach(function() {

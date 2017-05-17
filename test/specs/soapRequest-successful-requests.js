@@ -58,7 +58,7 @@ describe('soapRequest (function that actually makes API request)', function() {
 
 			sampleClient = new MockedFuelSoap({ auth: { clientId: 'testing', clientSecret: 'testing' }});
 
-			sinon.stub(sampleClient.AuthClient, 'getAccessToken', function(opts, cb) {
+			sinon.stub(sampleClient.AuthClient, 'getAccessToken').callsFake(function(opts, cb) {
 				cb(null, { accessToken: 12345 });
 			});
 		});
@@ -95,7 +95,7 @@ describe('soapRequest (function that actually makes API request)', function() {
 			// Arrange
 			var buildEnvelopeResult = { body: true, data: true };
 
-			sinon.stub(sampleClient, '_buildEnvelope', function() {
+			sinon.stub(sampleClient, '_buildEnvelope').callsFake(function() {
 				return buildEnvelopeResult;
 			});
 
@@ -120,10 +120,10 @@ describe('soapRequest (function that actually makes API request)', function() {
 			var localSampleClient = new LocalMockedFuelSoap({ auth: { clientId: 'testing', clientSecret: 'testing' }});
 
 			localSampleClient._buildEnvelope = sinon.stub();
-			sinon.stub(localSampleClient.AuthClient, 'getAccessToken', function(options, cb) {
+			sinon.stub(localSampleClient.AuthClient, 'getAccessToken').callsFake(function(options, cb) {
 				cb(null, { accessToken: 12345 });
 			});
-			sinon.stub(localSampleClient, '_parseResponse', function(key, body, cb) {
+			sinon.stub(localSampleClient, '_parseResponse').callsFake(function(key, body, cb) {
 				cb(null, parseResponseData);
 			});
 

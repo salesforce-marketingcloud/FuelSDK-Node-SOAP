@@ -91,7 +91,7 @@ describe('General Tests', function() {
 			request: requestSpy
 		});
 		var client = new FuelSoap(initOptions);
-		sinon.stub(client.AuthClient, 'getAccessToken', function(opts, cb) {
+		sinon.stub(client.AuthClient, 'getAccessToken').callsFake(function(opts, cb) {
 			cb(null, { accessToken: 123456 });
 		});
 
