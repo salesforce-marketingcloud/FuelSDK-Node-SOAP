@@ -4,7 +4,7 @@
   "description": "Node library for performing SOAP API calls to Salesforce Marketing Cloud (formerly ExactTarget).",
   "main": "./lib/fuel-soap.js",
   "scripts": {
-    "test": "grunt jshint && node ./node_modules/mocha/bin/mocha --reporter=spec test/specs/*.js"
+    "test": "node ./node_modules/.bin/grunt jshint && node ./node_modules/.bin/mocha --reporter=spec test/specs/*.js"
   },
   "repository": {
     "type": "git",

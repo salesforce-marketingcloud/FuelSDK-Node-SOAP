@@ -15,5 +15,3 @@ matrix:
     - node_js: "0.10"
     - node_js: "0.12"
 sudo: false
-before_script:
-  - npm install -g grunt-cli
