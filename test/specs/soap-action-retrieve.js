@@ -158,6 +158,19 @@ describe('SOAP Action - retrieve', function() {
 				// Assert
 				assert.deepEqual(soapRequestSpy.args[0][0].req.RetrieveRequestMsg.RetrieveRequest.Filter, sampleCallback.filter);
 			});
+
+			it('should set ContinueRequest to options.continueRequest in body (RetrieveRequestMsg > RetrieveRequest)', function() {
+				// Arrange
+				var sampleOptions = {
+					continueRequest: '<continue request stuff>'
+				};
+
+				// Act
+				FuelSoap.prototype.retrieve('Test', sampleOptions, function() {});
+
+				// Assert
+				assert.equal(soapRequestSpy.args[0][0].req.RetrieveRequestMsg.RetrieveRequest.ContinueRequest, sampleOptions.continueRequest);
+			});
 		});
 
 		describe('argument 3 (0 based index)', function() {
@@ -199,6 +212,17 @@ describe('SOAP Action - retrieve', function() {
 
 				// Assert
 				assert.equal(soapRequestSpy.args[0][0].req.RetrieveRequestMsg.RetrieveRequest.Filter, sampleOptions.filter);
+			});
+
+			it('should set ContinueRequest to options.continueRequest in body (RetrieveRequestMsg > RetrieveRequest)', function() {
+				// Arrange
+				sampleOptions.continueRequest = '<continue request stuff>';
+
+				// Act
+				FuelSoap.prototype.retrieve('Test', sampleProps, sampleOptions, function() {});
+
+				// Assert
+				assert.equal(soapRequestSpy.args[0][0].req.RetrieveRequestMsg.RetrieveRequest.ContinueRequest, sampleOptions.continueRequest);
 			});
 		});
 	});
