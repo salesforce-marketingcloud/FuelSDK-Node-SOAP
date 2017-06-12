@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="FuelSoap.html">FuelSoap</a><ul class='methods'><li data-type='method'><a href="FuelSoap.html#create">create</a></li><li data-type='method'><a href="FuelSoap.html#delete">delete</a></li><li data-type='method'><a href="FuelSoap.html#describe">describe</a></li><li data-type='method'><a href="FuelSoap.html#execute">execute</a></li><li data-type='method'><a href="FuelSoap.html#retrieve">retrieve</a></li><li data-type='method'><a href="FuelSoap.html#soapRequest">soapRequest</a></li><li data-type='method'><a href="FuelSoap.html#update">update</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="FuelSoap.html">FuelSoap</a><ul class='methods'><li data-type='method'><a href="FuelSoap.html#create">create</a></li><li data-type='method'><a href="FuelSoap.html#delete">delete</a></li><li data-type='method'><a href="FuelSoap.html#describe">describe</a></li><li data-type='method'><a href="FuelSoap.html#execute">execute</a></li><li data-type='method'><a href="FuelSoap.html#perform">perform</a></li><li data-type='method'><a href="FuelSoap.html#retrieve">retrieve</a></li><li data-type='method'><a href="FuelSoap.html#soapRequest">soapRequest</a></li><li data-type='method'><a href="FuelSoap.html#update">update</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -49,20 +49,25 @@
     <section class="readme">
         <article><h1>Fuel SOAP Client (for Node.js) <a href="https://travis-ci.org/salesforce-marketingcloud/FuelSDK-Node-SOAP"><img src="https://travis-ci.org/salesforce-marketingcloud/FuelSDK-Node-SOAP.svg?branch=master" alt="Build Status"></a></h1><p><strong><em>This repo used to be located at https://github.com/exacttarget/Fuel-Node-SOAP</em></strong></p>
 <p>This library allows users access to the Salesforce Marketing Cloud (formerly ExactTarget) SOAP API at a low level.</p>
-<pre class="prettyprint source"><code>npm install fuel-soap --save</code></pre><h2>Examples</h2><ol>
+<pre class="prettyprint source"><code>npm install fuel-soap --save</code></pre><h2>Docs &amp; Examples</h2><p>Our docs site is available <a href="http://salesforce-marketingcloud.github.io/FuelSDK-Node-SOAP/">here</a></p>
+<p>Common examples:</p>
+<ol>
 <li><a href="https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-1_setup-js">Setting up the client</a></li>
 <li><a href="https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-2_simple-retrieve-js">Simple Retrieve</a></li>
 <li><a href="https://gist.github.com/vernak2539/8babcdd13b80d632dd12#file-3_business-unit-retrieve-js">Business Unit Retrieve</a></li>
 <li><a href="https://gist.github.com/vernak2539/a1b5c6e36f6c7f1fe63b">Custom Headers</a></li>
+<li><a href="https://gist.github.com/angrycider/02e858fd013144e1bab3b422f7dad72e">Upsert row to a Data Extension</a></li>
+<li><a href="https://gist.github.com/angrycider/f8377566cb8846b1842da15786b7fd59">Upsert Subscriber Record</a></li>
+<li><a href="https://gist.github.com/angrycider/ce1d4e3a95dbd67c4c83176c04d08036">Retrieve Subscriber Attributes</a></li>
+<li><a href="https://gist.github.com/angrycider/cef64f6d5081bad90625747bb622386e">Retrieve Folder with Given Parent</a></li>
+<li><a href="https://gist.github.com/angrycider/0bb7f244784666d6d0713264d7e60db4">Complex filter retrieving a folder with a given parent and name</a></li>
+<li><a href="https://gist.github.com/angrycider/b5369270b48eea2b6d225aa75797c779">Create Folder</a></li>
+<li><a href="https://gist.github.com/angrycider/ee39a7a87454201ea469108104b6f0e0">Create Email</a></li>
+<li><a href="https://gist.github.com/angrycider/47a2727e274ef87632c115b333aeb473">Retrieve Data Extension Object ID given a Customer Key</a></li>
+<li><a href="https://gist.github.com/angrycider/62ffa5285d7399b2fbaa8d63989c64c0">Create Email Send Definition</a></li>
+<li><a href="https://gist.github.com/angrycider/ca45209fcad89ae3f71e7119680f24ef">Perform/Send an Email Send Definition</a></li>
 </ol>
-<h2>Contributors</h2><ul>
-<li>Aydrian J. Howard - <a href="https://twitter.com/aydrianh">twitter</a>, <a href="https://github.com/aydrian">github</a></li>
-<li>Alex Vernacchia - <a href="https://twitter.com/vernacchia">twitter</a>, <a href="https://github.com/vernak2539">github</a></li>
-<li>Kelly Andrews - <a href="https://twitter.com/kellyjandrews">twitter</a>, <a href="https://github.com/kellyjandrews">github</a></li>
-<li>Jimmy Burgess - <a href="https://github.com/jimmyburgess91">github</a></li>
-<li>Nathan LaFreniere - <a href="https://github.com/nlf">github</a></li>
-<li>Drew Simmons - <a href="https://github.com/timsim00">github</a></li>
-</ul>
+<p>More in-depth examples can be found <a href="https://github.com/salesforce-marketingcloud/FuelSDK-Node">here</a></p>
 <h2>Contributing</h2><p>Please checkout our <a href="https://github.com/salesforcefuel/FuelSDK-Node-SOAP/blob/master/.jshintrc"><code>.jshintrc</code></a> file and follow the linting rules when contributing. In addition, this project uses <strong>tabs</strong> not spaces.</p>
 <h2>ChangeLog</h2><ul>
 <li><strong>releases after v1 will have their notes in the 'releases' section</strong></li>
@@ -85,7 +90,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jun 12 2017 13:37:51 GMT+0100 (BST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jun 12 2017 13:43:00 GMT+0100 (BST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

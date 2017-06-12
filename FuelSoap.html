@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="FuelSoap.html">FuelSoap</a><ul class='methods'><li data-type='method'><a href="FuelSoap.html#create">create</a></li><li data-type='method'><a href="FuelSoap.html#delete">delete</a></li><li data-type='method'><a href="FuelSoap.html#describe">describe</a></li><li data-type='method'><a href="FuelSoap.html#execute">execute</a></li><li data-type='method'><a href="FuelSoap.html#retrieve">retrieve</a></li><li data-type='method'><a href="FuelSoap.html#soapRequest">soapRequest</a></li><li data-type='method'><a href="FuelSoap.html#update">update</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="FuelSoap.html">FuelSoap</a><ul class='methods'><li data-type='method'><a href="FuelSoap.html#create">create</a></li><li data-type='method'><a href="FuelSoap.html#delete">delete</a></li><li data-type='method'><a href="FuelSoap.html#describe">describe</a></li><li data-type='method'><a href="FuelSoap.html#execute">execute</a></li><li data-type='method'><a href="FuelSoap.html#perform">perform</a></li><li data-type='method'><a href="FuelSoap.html#retrieve">retrieve</a></li><li data-type='method'><a href="FuelSoap.html#soapRequest">soapRequest</a></li><li data-type='method'><a href="FuelSoap.html#update">update</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -716,7 +716,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line328">line 328</a>
+        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line336">line 336</a>
     </li></ul></dd>
     
 
@@ -1060,7 +1060,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line373">line 373</a>
+        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line381">line 381</a>
     </li></ul></dd>
     
 
@@ -1216,7 +1216,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line402">line 402</a>
+        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line410">line 410</a>
     </li></ul></dd>
     
 
@@ -1383,6 +1383,185 @@
 
     
 
+    <h4 class="name" id="perform"><span class="type-signature"></span>perform<span class="signature">(type, def, callback)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line438">line 438</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>This method handles the Perform SOAP Action</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>xsi:type</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>def</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>definition set in body as <code>PerformRequestMsg.Definitions.Definition</code>...only handles one def</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="FuelSoap.html#~StandardCallback">FuelSoap~StandardCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Callback that handles response</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="retrieve"><span class="type-signature"></span>retrieve<span class="signature">(type, props<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>, callback)</span><span class="type-signature"></span></h4>
 
     
@@ -1395,7 +1574,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line197">line 197</a>
+        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line198">line 198</a>
     </li></ul></dd>
     
 
@@ -1695,6 +1874,34 @@ If <strong>2 params</strong> exist, function looks like <code>function(type, cal
             
 
             <td class="description last"><p>Will be used in body as <code>Filter</code> under <code>RetrieveRequestMsg.RetrieveRequest</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>continueRequest</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Will be used in body as <code>ContinueRequest</code> under <code>RetrieveRequestMsg.RetrieveRequest</code></p></td>
         </tr>
 
     
@@ -2144,7 +2351,7 @@ If <strong>2 params</strong> exist, function looks like <code>function(type, cal
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line279">line 279</a>
+        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line287">line 287</a>
     </li></ul></dd>
     
 
@@ -2494,7 +2701,7 @@ If <strong>2 params</strong> exist, function looks like <code>function(type, cal
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line620">line 620</a>
+        <a href="fuel-soap.js.html">fuel-soap.js</a>, <a href="fuel-soap.js.html#line661">line 661</a>
     </li></ul></dd>
     
 
@@ -2721,7 +2928,7 @@ If <strong>2 params</strong> exist, function looks like <code>function(type, cal
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jun 12 2017 13:37:51 GMT+0100 (BST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jun 12 2017 13:43:00 GMT+0100 (BST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
