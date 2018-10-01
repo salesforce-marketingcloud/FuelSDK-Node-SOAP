@@ -16,6 +16,7 @@
   "strict": true,
   "undef": true,
   "unused": true,
+  "esversion": 6,
   "globals": {
     "require": true,
     "define": true,
