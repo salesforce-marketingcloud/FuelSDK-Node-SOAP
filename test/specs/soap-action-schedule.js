@@ -39,7 +39,7 @@ describe('SOAP Action - schedule', function() {
 				ObjectID: '1234'
 			}
 		}
-	]
+	];
 
 	beforeEach(function() {
 		FuelSoap = proxyquire('../../lib/fuel-soap', {
