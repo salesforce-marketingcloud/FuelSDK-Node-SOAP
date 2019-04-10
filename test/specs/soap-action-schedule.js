@@ -16,11 +16,30 @@ describe('SOAP Action - schedule', function() {
 	var soapRequestSpy;
 	var parsedOptions = { parsedOptions: true };
 	var simpleVerifyTestCases = [
-		{ property: 'action', expected: 'start' }
+		{ property: 'action', expected: 'Schedule' }
 		, { property: 'key', expected: 'ScheduleResponseMsg' }
 		, { property: 'retry', expected: true }
 		, { property: 'reqOptions', expected: parsedOptions }
 	];
+
+	var exampleRecurrence = {
+		Recurrence: {
+			$: {'xsi:type': 'MinutelyRecurrence'},
+			MinutelyRecurrencePatternType: 'Interval',
+			MinuteInterval: '10'
+		},
+		RecurrenceType: 'Minutely',
+		RecurrenceRangeType: 'EndAfter',
+		StartDateTime: '2019-04-10T10:10:00.046+01:00',
+		Occurrences: '999999'
+	};
+	var exampleInteractions =[ 
+		{
+			Interaction: {
+				ObjectID: '1234'
+			}
+		}
+	]
 
 	beforeEach(function() {
 		FuelSoap = proxyquire('../../lib/fuel-soap', {
@@ -39,8 +58,8 @@ describe('SOAP Action - schedule', function() {
 			// Act
 			FuelSoap.prototype.schedule(
 				'Test', 
-				{ RecurrenceType: 'Hourly' },
-				[{Interaction: {ObjectID: '1234'}}],
+				exampleRecurrence,
+				exampleInteractions,
 				'start', 
 				{ options: true }, 
 				function() {});
@@ -50,17 +69,13 @@ describe('SOAP Action - schedule', function() {
 	});
 
 	it('should pass correct body to soapRequest', function() {
-		// Arrange
-		var sampleOptions = { options: true, moar: false };
-		var sampleProps   = { props: true };
-
 		// Act
-		FuelSoap.prototype.schedule('Test', sampleProps, sampleOptions, function() {});
+		FuelSoap.prototype.schedule('Test', exampleRecurrence, exampleInteractions,'start',{ options: true } , function() {});
 
 		// Assert
 		var actualObj = soapRequestSpy.args[0][0].req;
-		assert.equal(actualObj.ScheduleRequestMsg.Options, sampleOptions);
-		assert.equal(actualObj.ScheduleRequestMsg.Objects, sampleProps);
+		assert.equal(actualObj.ScheduleRequestMsg.Recurrence, exampleRecurrence);
+		assert.equal(actualObj.ScheduleRequestMsg.Interactions, exampleInteractions);
 		assert.ok(!actualObj.ScheduleRequestMsg.Options.QueryAllAccounts);
 	});
 
@@ -80,7 +95,7 @@ describe('SOAP Action - schedule', function() {
 		var sampleCallback = sinon.spy();
 
 		// Act
-		FuelSoap.prototype.schedule('Test', { data: true }, { options: true }, sampleCallback);
+		FuelSoap.prototype.schedule('Test', exampleRecurrence, exampleInteractions,'start',{ options: true } , function() {});
 
 		// Assert
 		assert.ok(soapRequestSpy.calledWith(sinon.match.object, sampleCallback));
@@ -89,10 +104,9 @@ describe('SOAP Action - schedule', function() {
 	it('should add QueryAllAccounts to body when option passed', function() {
 		// Arrange
 		var sampleOptions = { queryAllAccounts: true };
-		var sampleProps   = { props: true };
 
 		// Act
-		FuelSoap.prototype.schedule('Test', sampleProps, sampleOptions, function() {});
+		FuelSoap.prototype.schedule('Test', exampleRecurrence, exampleInteractions,'start',sampleOptions , function() {});
 
 		// Assert
 		var actualObj = soapRequestSpy.args[0][0].req;
