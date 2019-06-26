@@ -18,9 +18,9 @@
     "grunt-bump": "^0.8.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-jshint": "^1.1.0",
-    "mocha": "^4.0.0",
+    "mocha": "^6.1.4",
     "proxyquire": "^1.8.0",
-    "sinon": "^2.2.0"
+    "sinon": "^7.3.2"
   },
   "dependencies": {
     "fuel-auth": "^3.2.1",
