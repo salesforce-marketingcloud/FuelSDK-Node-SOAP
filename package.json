@@ -20,7 +20,7 @@
     "grunt-contrib-jshint": "^1.1.0",
     "mocha": "^5.0.5",
     "proxyquire": "^1.8.0",
-    "sinon": "^2.2.0"
+    "sinon": "^5.0.1"
   },
   "dependencies": {
     "fuel-auth": "^3.2.1",
