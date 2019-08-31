@@ -22,7 +22,7 @@ describe('SOAP Action - schedule', function() {
 		, { property: 'reqOptions', expected: parsedOptions }
 	];
 
-	var exampleRecurrence = {
+	var exampleSchedule = {
 		Recurrence: {
 			$: {'xsi:type': 'MinutelyRecurrence'},
 			MinutelyRecurrencePatternType: 'Interval',
@@ -58,7 +58,7 @@ describe('SOAP Action - schedule', function() {
 			// Act
 			FuelSoap.prototype.schedule(
 				'Test', 
-				exampleRecurrence,
+				exampleSchedule,
 				exampleInteractions,
 				'start', 
 				{ options: true }, 
@@ -67,35 +67,23 @@ describe('SOAP Action - schedule', function() {
 			assert.equal(soapRequestSpy.args[0][0][testCase.property], testCase.expected);
 		});
 	});
-
 	it('should pass correct body to soapRequest', function() {
-		// Act
-		FuelSoap.prototype.schedule('Test', exampleRecurrence, exampleInteractions,'start',{ options: true } , function() {});
 
+		// Act
+		FuelSoap.prototype.schedule('Test', exampleSchedule, exampleInteractions,'start',{ options: true } , function() {});
 		// Assert
 		var actualObj = soapRequestSpy.args[0][0].req;
-		assert.equal(actualObj.ScheduleRequestMsg.Recurrence, exampleRecurrence);
+		assert.equal(actualObj.ScheduleRequestMsg.Schedule, exampleSchedule);
 		assert.equal(actualObj.ScheduleRequestMsg.Interactions, exampleInteractions);
 		assert.ok(!actualObj.ScheduleRequestMsg.Options.QueryAllAccounts);
 	});
 
-	it('should pass callback to soapRequest when props', function() {
+	it('should pass callback to soapRequest when options', function() {
 		// Arrange
 		var sampleCallback = sinon.spy();
 
 		// Act
-		FuelSoap.prototype.schedule('Test', { data: true }, sampleCallback);
-
-		// Assert
-		assert.ok(soapRequestSpy.calledWith(sinon.match.object, sampleCallback));
-	});
-
-	it('should pass callback to soapRequest when props and options', function() {
-		// Arrange
-		var sampleCallback = sinon.spy();
-
-		// Act
-		FuelSoap.prototype.schedule('Test', exampleRecurrence, exampleInteractions,'start',{ options: true } , function() {});
+		FuelSoap.prototype.schedule('Test', exampleSchedule, exampleInteractions,'start', { options: true }, sampleCallback);
 
 		// Assert
 		assert.ok(soapRequestSpy.calledWith(sinon.match.object, sampleCallback));
@@ -106,7 +94,7 @@ describe('SOAP Action - schedule', function() {
 		var sampleOptions = { queryAllAccounts: true };
 
 		// Act
-		FuelSoap.prototype.schedule('Test', exampleRecurrence, exampleInteractions,'start',sampleOptions , function() {});
+		FuelSoap.prototype.schedule('Test', exampleSchedule, exampleInteractions,'start',sampleOptions , function() {});
 
 		// Assert
 		var actualObj = soapRequestSpy.args[0][0].req;
