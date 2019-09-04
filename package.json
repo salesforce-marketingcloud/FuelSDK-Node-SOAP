@@ -1,6 +1,6 @@
 {
   "name": "fuel-soap",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Node library for performing SOAP API calls to Salesforce Marketing Cloud (formerly ExactTarget).",
   "main": "./lib/fuel-soap.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "sinon": "^5.0.1"
   },
   "dependencies": {
-    "fuel-auth": "^3.2.1",
+    "fuel-auth": "^3.3.0",
     "lodash.clone": "^4.5.0",
     "lodash.isempty": "^4.4.0",
     "lodash.isplainobject": "^4.0.3",
