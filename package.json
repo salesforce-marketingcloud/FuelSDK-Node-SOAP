@@ -23,7 +23,7 @@
     "sinon": "^5.0.1"
   },
   "dependencies": {
-    "fuel-auth": "^3.2.1",
+    "fuel-auth": "^3.3.0",
     "lodash.clone": "^4.5.0",
     "lodash.isempty": "^4.4.0",
     "lodash.isplainobject": "^4.0.3",
