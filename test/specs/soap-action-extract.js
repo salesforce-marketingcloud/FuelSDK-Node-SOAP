@@ -43,7 +43,7 @@ describe('SOAP Action - extract', function() {
 		FuelSoap.prototype.extract(sampleRequest, function() {});
 
 		// Assert
-		assert.equal(soapRequestSpy.args[0][0].req.PerformExtractMsg.Requests, sampleRequest);
+		assert.equal(soapRequestSpy.args[0][0].req.ExtractRequestMsg.Requests, sampleRequest);
 	});
 
 	it('should pass callback to soapRequest', function() {
