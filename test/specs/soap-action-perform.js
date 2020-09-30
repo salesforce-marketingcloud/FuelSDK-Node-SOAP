@@ -30,7 +30,7 @@ describe('SOAP Action - perform', function() {
 	simpleVerifyTestCases.forEach(function(testCase) {
 		it('should call soapRequest with correct ' + testCase.property, function() {
 			// Act
-			FuelSoap.prototype.perform('Test', { data: true }, function() {});
+			FuelSoap.prototype.perform('Test', { data: true }, {}, function() {});
 
 			// Assert
 			assert.equal(soapRequestSpy.args[0][0][testCase.property], testCase.expected);
@@ -41,7 +41,7 @@ describe('SOAP Action - perform', function() {
 		// Act
 		var sampleType  = 'TestType';
 		var sampleDef = {'CustomerKey': 'DCL_Test'};
-		FuelSoap.prototype.perform(sampleType, sampleDef, function() {});
+		FuelSoap.prototype.perform(sampleType, sampleDef, {}, function() {});
 
 		// Assert
 		assert.equal(soapRequestSpy.args[0][0].req.PerformRequestMsg.Action, 'start');
@@ -53,7 +53,7 @@ describe('SOAP Action - perform', function() {
 		var sampleCallback = sinon.spy();
 
 		// Act
-		FuelSoap.prototype.perform('Test', { data: true }, sampleCallback);
+		FuelSoap.prototype.perform('Test', { data: true }, {}, sampleCallback);
 
 		// Assert
 		assert.ok(soapRequestSpy.calledWith(sinon.match.object, sampleCallback));
