@@ -30,7 +30,7 @@ describe('SOAP Action - extract', function() {
 	simpleVerifyTestCases.forEach(function(testCase) {
 		it('should call soapRequest with correct ' + testCase.property, function() {
 			// Act
-			FuelSoap.prototype.extract({ data: true }, function() {});
+			FuelSoap.prototype.extract({ data: true }, {}, function() {});
 
 			// Assert
 			assert.equal(soapRequestSpy.args[0][0][testCase.property], testCase.expected);
@@ -40,7 +40,7 @@ describe('SOAP Action - extract', function() {
 	it('should call soapRequest with proper body', function() {
 		// Act
 		var sampleRequest = { data: true };
-		FuelSoap.prototype.extract(sampleRequest, function() {});
+		FuelSoap.prototype.extract(sampleRequest, {}, function() {});
 
 		// Assert
 		assert.equal(soapRequestSpy.args[0][0].req.PerformExtractMsg.Requests, sampleRequest);
@@ -51,7 +51,7 @@ describe('SOAP Action - extract', function() {
 		var sampleCallback = sinon.spy();
 
 		// Act
-		FuelSoap.prototype.extract({ data: true }, sampleCallback);
+		FuelSoap.prototype.extract({ data: true }, {}, sampleCallback);
 
 		// Assert
 		assert.ok(soapRequestSpy.calledWith(sinon.match.object, sampleCallback));
