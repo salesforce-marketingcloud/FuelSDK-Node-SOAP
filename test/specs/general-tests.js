@@ -126,7 +126,6 @@ describe('General Tests', function() {
 	// need to be removed
 	notImplementedMethods = [
 		'configure'
-		, 'extract'
 		, 'getSystemStatus'
 		, 'query'
 		, 'versionInfo'
